@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    background: aliceblue;
+}
+
+.layout {
+    display: flex;
+    --sidebar-width: 300px;
+    --content-width: calc(100% - var(--sidebar-width));
+
+    &__sidebar {
+        flex: 0 0 var(--sidebar-width);
+    }
+
+    &__content {
+        flex: 1 0 var(--content-width);
+        max-width: var(--content-width);
+        padding-top: 20px;
+
+        &:only-child {
+            --content-width: 100%;
+        }
+    }
+}
