@@ -1,27 +1,18 @@
 ---
-title: about
-aboutTitle: Welcome to about.hbs
-css: [login.css]
+title: chats
+css: [sidebar.css]
+data: data
+contacts: data
 ---
 {{!< base}}
 
 <main>
   <div class="layout">
     <div class="layout__sidebar">
-      <ul>
-        <li>
-          chat name 1
-        </li>
-        <li>
-          chat name 2
-        </li>
-        <li>
-          <a href="index.hbs">return</a>
-        </li>
-      </ul>
+      {{> sidebar}}
     </div>
     <div class="layout__content">
-      chat
+      chat<a href="chat.hbs">ff</a>
       <p>
         <textarea></textarea>
       </p>

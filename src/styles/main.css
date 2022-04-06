@@ -1,21 +1,26 @@
-body {
-    margin: 0;
-    background: aliceblue;
-}
+@import "common/root.css";
+@import "common/base.css";
+@import "common/forms.css";
+@import "common/buttons.css";
+@import "common/utils.css";
 
 .layout {
     display: flex;
-    --sidebar-width: 300px;
+    --sidebar-width: 320px;
     --content-width: calc(100% - var(--sidebar-width));
+    min-height: 100vh;
+    border-right: 1px solid var(--border-color);
 
     &__sidebar {
+        background-color: white;
+        border-right: 1px solid var(--border-color);
         flex: 0 0 var(--sidebar-width);
     }
 
     &__content {
+        display: flex;
         flex: 1 0 var(--content-width);
         max-width: var(--content-width);
-        padding-top: 20px;
 
         &:only-child {
             --content-width: 100%;

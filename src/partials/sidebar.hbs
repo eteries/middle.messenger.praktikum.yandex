@@ -1,0 +1,22 @@
+<div class="sidebar">
+  <div class="sidebar__profile">
+    <a class="profile-link" href="index.hbs">Profile</a>
+  </div>
+  <div class="sidebar__search">
+    <input class="control">
+  </div>
+  <ul class="chat-list">
+    {{#each data.contacts}}
+      <a class="contact" href="chat.hbs">
+        <div class="contact__avatar"></div>
+        <div class="contact__name">{{this.name}}</div>
+        <div class="contact__day">{{this.day}}</div>
+        <div class="contact__content">{{this.content}}</div>
+          {{#if this.num}}
+            <div class="contact__num">{{this.num}}</div>
+          {{/if}}
+
+      </a>
+    {{/each}}
+  </ul>
+</div>

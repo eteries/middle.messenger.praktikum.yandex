@@ -1,0 +1,65 @@
+---
+title: chat
+css: [sidebar.css, chat.css]
+---
+{{!< base}}
+
+<main>
+  <div class="layout">
+    <div class="layout__sidebar">
+      {{> sidebar}}
+    </div>
+    <div class="layout__content">
+      <article class="chat-area">
+        <header class="chat-area__header">
+
+        </header>
+        <section class="chat-area__content">
+          <div class="chat-container">
+            <div class="chat">
+              <div class="chat-date">
+                <span>02 марта 2022</span>
+              </div>
+              <div class="chat__message">
+                <div class="chat-message">
+                  <div class="chat-message__avatar">
+                    <div class="avatar avatar--white-border">
+                      img
+                    </div>
+                  </div>
+                  <div class="message-balloon">
+                    <div class="message-content">
+                      <p>message</p>
+                      <div class="message-content__date">1.12 icon-check/double-check</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="chat__message">
+                <div class="chat__message chat-message chat-message--answer">
+                  <div class="chat-message__avatar">
+                    <div class="avatar avatar--white-border">
+                      img
+                    </div>
+                  </div>
+                  <div class="message-balloon">
+                    <div class="message-content">
+                      <p>message</p>
+                      <div class="message-content__date">1.12 icon-check/double-check</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer class="chat-area__footer chat-footer">
+          <textarea class="control textarea"></textarea>
+          <button class="button button--primary button--round" aria-label="Send">
+            {{> icons/arrow-right}}
+          </button>
+        </footer>
+      </article>
+    </div>
+  </div>
+</main>

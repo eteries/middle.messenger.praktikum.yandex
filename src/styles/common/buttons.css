@@ -1,0 +1,27 @@
+.button {
+    align-items: center;
+    border: 1px solid var(--primary-color);
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    min-height: 36px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.button--primary {
+    color: white;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+
+    &:hover {
+        background-color: var(--primary-color-darker);
+    }
+}
+
+.button--round {
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+}

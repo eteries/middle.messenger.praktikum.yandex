@@ -1,3 +1,17 @@
 {
-    "title": "Taper"
+    "title": "Taper",
+    "contacts": [
+        {
+            "name": "Victor",
+            "day": "Mo",
+            "content": "Both Human Interface Guidelines and Material Design recommend...",
+            "num": 2
+        },
+        {
+            "name": "Yandex.Practicum",
+            "day": "We",
+            "content": "Just a friendly reminder that the deadline is approaching",
+            "num": null
+        }
+    ]
 }
