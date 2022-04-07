@@ -1,0 +1,48 @@
+---
+title: index
+css: [login.css]
+---
+
+{{!< base}}
+
+<main class="layout">
+  <div class="layout__content center-container">
+    <div class="login">
+      <h1>{{signup.title}}</h1>
+      <form class="elements-column">
+        <div>
+          <label class="label">{{signup.emailLabel}}</label>
+          <input class="control" name="email" type="email" />
+        </div>
+        <div>
+          <label class="label">{{signup.loginLabel}}</label>
+          <input class="control" name="login" />
+        </div>
+        <div>
+          <label class="label">{{signup.firstNameLabel}}</label>
+          <input class="control" name="first_name" />
+        </div>
+        <div>
+          <label class="label">{{signup.lastNameLabel}}</label>
+          <input class="control" name="second_name" />
+        </div>
+        <div>
+          <label class="label">{{signup.phoneLabel}}</label>
+          <input class="control" name="phone" />
+        </div>
+        <div>
+          <label class="label">{{signup.passwordLabel}}</label>
+          <input class="control" name="password" type="password" />
+        </div>
+
+        <div class="login__action">
+          <a class="button button--primary" href="chats.hbs">{{signup.signupButton}}</a>
+        </div>
+        <div class="login__link">
+          <a class="link" href="login.hbs">{{signup.loginLink}}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+

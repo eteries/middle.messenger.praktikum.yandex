@@ -1,0 +1,11 @@
+{
+  "title": "Sign up to start chatting",
+  "loginLabel": "Login",
+  "emailLabel": "Email",
+  "firstNameLabel": "First name",
+  "lastNameLabel": "Last name",
+  "phoneLabel": "Phone",
+  "passwordLabel": "Password",
+  "signupButton": "Signup",
+  "loginLink": "Login"
+}

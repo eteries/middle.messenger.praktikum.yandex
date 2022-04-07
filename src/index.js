@@ -1,3 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('loaded!');
-});
+if (window.location.pathname === '/') {
+    window.location.replace('/login.html');
+}

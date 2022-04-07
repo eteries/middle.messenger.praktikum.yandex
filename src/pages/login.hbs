@@ -1,0 +1,32 @@
+---
+title: index
+css: [login.css]
+---
+
+{{!< base}}
+
+<main class="layout">
+  <div class="layout__content center-container">
+    <div class="login">
+      <h1>{{login.title}}</h1>
+      <form class="elements-column">
+        <div>
+          <label class="label">{{login.loginLabel}}</label>
+          <input class="control" name="login" />
+        </div>
+        <div>
+          <label class="label">{{login.passwordLabel}}</label>
+          <input class="control" name="password" type="password" />
+        </div>
+
+        <div class="login__action">
+          <a class="button button--primary" href="./chats.hbs">{{login.loginButton}}</a>
+        </div>
+        <div class="login__link">
+          <a class="link" href="./chats.hbs">{{login.signupLink}}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
