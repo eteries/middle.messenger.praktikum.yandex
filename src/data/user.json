@@ -1,5 +1,6 @@
 {
-  "title": "Sign up to start chatting",
+  "signupTitle": "Sign up to start chatting",
+  "loginTitle": "Login to start chatting",
   "loginLabel": "Login",
   "emailLabel": "Email",
   "firstNameLabel": "First name",
@@ -7,5 +8,7 @@
   "phoneLabel": "Phone",
   "passwordLabel": "Password",
   "signupButton": "Signup",
+  "signupLink": "Signup",
+  "loginButton": "Login",
   "loginLink": "Login"
 }

@@ -1,0 +1,19 @@
+---
+title: Edit user
+css: [user.css]
+isEdit: true
+---
+
+{{!< base}}
+
+<main class="layout">
+  <div class="layout__content center-container">
+    <div class="user">
+      <a href="chats.hbs" aria-label="{{user.backLink}}"></a>
+      <h1>{{user.title}}</h1>
+      <div id="user-content"></div>
+    </div>
+  </div>
+</main>
+
+<script src="../index.js" type="module"></script>
