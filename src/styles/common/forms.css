@@ -25,3 +25,26 @@
     margin-bottom: 4px;
     font-size: 0.9rem;
 }
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &--wide {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.form-row--wide {
+    .control,
+    .value {
+        max-width: 300px;
+    }
+
+    .label {
+        font-size: 1rem;
+    }
+}

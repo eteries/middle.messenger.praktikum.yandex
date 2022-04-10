@@ -1,19 +1,21 @@
 ---
-title: Edit user
+title: User
 css: [user.css]
-isEdit: true
+isEdit: false
 ---
 
 {{!< base}}
 
 <main class="layout">
-  <div class="layout__content center-container">
-    <div class="user">
-      <a href="chats.hbs" aria-label="{{user.backLink}}"></a>
-      <h1>{{user.title}}</h1>
-      <div id="user-content"></div>
+  <div class="layout__content">
+    <div class="user card">
+      <a href="chats.hbs"
+         class="button button--round button--primary-ghost user__back"
+         aria-label="{{user.backLink}}">
+        {{> inline-svg/arrow-left}}
+      </a>
+      <h1>{{ui.user.title}}</h1>
+      {{> user-view}}
     </div>
   </div>
 </main>
-
-<script src="../index.js" type="module"></script>

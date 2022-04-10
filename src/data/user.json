@@ -1,14 +1,7 @@
 {
-  "signupTitle": "Sign up to start chatting",
-  "loginTitle": "Login to start chatting",
-  "loginLabel": "Login",
-  "emailLabel": "Email",
-  "firstNameLabel": "First name",
-  "lastNameLabel": "Last name",
-  "phoneLabel": "Phone",
-  "passwordLabel": "Password",
-  "signupButton": "Signup",
-  "signupLink": "Signup",
-  "loginButton": "Login",
-  "loginLink": "Login"
+  "firstName": "Ivan",
+  "lastName": "Ivanov",
+  "login": "me",
+  "email": "me@taper.messenger",
+  "phone": "+7 (909) 967 30 30"
 }

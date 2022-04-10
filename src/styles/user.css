@@ -1,0 +1,56 @@
+.user {
+    position: relative;
+    margin: 50px auto auto;
+    max-width: 650px;
+    width: 100%;
+    padding: 30px 50px;
+
+    &__back {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+}
+
+.avatar {
+    display: flex;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--secondary-color-lighter);
+}
+
+.edit-form {
+    &__actions {
+        margin-top: 20px;
+    }
+
+    &__avatar {
+        margin: 20px auto 40px;
+    }
+}
+
+.actions {
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+
+    &__item {
+        flex: 1;
+    }
+
+    &__item .button {
+        width: 100%;
+    }
+}
+
+.user-view {
+    &__header {
+        text-align: center;
+    }
+
+    &__avatar {
+        margin: 20px auto 40px;
+    }
+}

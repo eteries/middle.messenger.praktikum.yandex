@@ -1,36 +1,47 @@
 ---
 title: chat
-css: [sidebar.css, chat.css]
+css: [sidebar.css, chat.css, message.css]
 ---
 {{!< base}}
 
 <main>
   <div class="layout">
     <div class="layout__sidebar">
+      <img class="layout__logo layout__logo--inner"
+           src="../assets/img/logo-taper.svg"
+           width="100"
+           alt="taper web messenger">
       {{> sidebar}}
     </div>
     <div class="layout__content">
       <article class="chat-area">
-        <header class="chat-area__header">
-
+        <header class="chat-area__header chat-header">
+          <a class="chat-header__plus" href="#" aria-label="{{ui.chat.add}}" title="{{ui.chat.add}}">
+            {{> inline-svg/plus}}
+          </a>
+          <a class="chat-header__delete" href="#" aria-label="{{ui.chat.delete}}" title="{{ui.chat.delete}}">
+            {{> inline-svg/delete}}
+          </a>
         </header>
         <section class="chat-area__content">
           <div class="chat-container">
             <div class="chat">
               <div class="chat-date">
-                <span>02 марта 2022</span>
+                <span>{{data.chat.date}}</span>
               </div>
               <div class="chat__message">
                 <div class="chat-message">
                   <div class="chat-message__avatar">
-                    <div class="avatar avatar--white-border">
-                      img
+                    <div class="avatar">
                     </div>
                   </div>
                   <div class="message-balloon">
                     <div class="message-content">
-                      <p>message</p>
-                      <div class="message-content__date">1.12 icon-check/double-check</div>
+                      <p>{{data.chat.message1}}</p>
+                      <div class="message-content__time">
+                        {{data.chat.time1}}
+                        {{> inline-svg/double-check}}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -38,14 +49,15 @@ css: [sidebar.css, chat.css]
               <div class="chat__message">
                 <div class="chat__message chat-message chat-message--answer">
                   <div class="chat-message__avatar">
-                    <div class="avatar avatar--white-border">
-                      img
-                    </div>
+                    <div class="avatar"></div>
                   </div>
                   <div class="message-balloon">
                     <div class="message-content">
-                      <p>message</p>
-                      <div class="message-content__date">1.12 icon-check/double-check</div>
+                      <p>{{data.chat.message2}}</p>
+                      <div class="message-content__time">
+                        {{data.chat.time2}}
+                        {{> inline-svg/double-check}}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -56,7 +68,7 @@ css: [sidebar.css, chat.css]
         <footer class="chat-area__footer chat-footer">
           <textarea class="control textarea"></textarea>
           <button class="button button--primary button--round" aria-label="Send">
-            {{> icons/arrow-right}}
+            {{> inline-svg/arrow-right}}
           </button>
         </footer>
       </article>

@@ -19,3 +19,15 @@ A practical project for the Yandex.Practicum middle webdev course.
 ## Макеты
 
 [https://www.figma.com/file/HdTU5GLzwV4Ctjjb5NPq9L/Taper?node-id=0%3A1](https://www.figma.com/file/HdTU5GLzwV4Ctjjb5NPq9L/Taper?node-id=0%3A1)
+
+## Страницы
+* <a href="login.hbs">login</a>
+* <a href="signup.hbs">signup</a>
+* <a href="chats.hbs">chats</a>
+* <a href="chat.hbs">chats</a>
+* <a href="user.hbs">edit</a>
+* <a href="user-edit.hbs">edit user</a>
+* <a href="404.hbs">404</a>
+* <a href="500.hbs">500</a>
+
+

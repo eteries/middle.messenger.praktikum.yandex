@@ -9,6 +9,13 @@
     --primary-color-darker: #930bc2;
     --primary-color-darkest: #69088b;
 
-    --secondary-color: #33c5f3;
+    --secondary-color: #1ac8f8;
     --secondary-color-lighter: #d3ecf7;
+    --secondary-color-darker: #0aabd5;
+
+    --danger-color: #ff2e2e;
+    --danger-color-lighter: #ff7373;
+    --danger-color-darker: #da1313;
+
+    --gray-color-light: #e4e4ea;
 }

@@ -1,5 +1,5 @@
 ---
-title: index
+title: Error
 css: [errors.css]
 ---
 
@@ -8,7 +8,11 @@ css: [errors.css]
 <main class="layout">
   <div class="layout__content layout__content--white center-container">
     <div class="error">
-      <h1>500</h1>
+      <h1>{{ui.unavailable}}</h1>
+      <img class="error__img"
+           src="../assets/img/error-status.svg"
+           alt="">
+      <a href="../pages/login.hbs">{{ui.home}}</a>
     </div>
   </div>
 </main>

@@ -1,33 +1,41 @@
-<form class="elements-column">
-  <div>
-    <label class="label">{{user.emailLabel}}</label>
-    <input class="control" name="email" type="email" />
+<form class="elements-column edit-form">
+  <div class="form-row">
+    <header class="user-view__header form-row">
+      <h1>{{user.firstName}} {{user.lastName}}</h1>
+    </header>
+    <div class="edit-form__avatar">
+      <label for="avatar-upload" class="avatar"></label>
+      <input class="visually-hidden" type="file" id="avatar-upload" />
+    </div>
   </div>
-  <div>
-    <label class="label">{{user.loginLabel}}</label>
-    <input class="control" name="login" />
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.emailLabel}}</label>
+    <input class="control" name="email" type="email" value="{{user.email}}" />
   </div>
-  <div>
-    <label class="label">{{user.firstNameLabel}}</label>
-    <input class="control" name="first_name" />
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.loginLabel}}</label>
+    <input class="control" name="login" value="{{user.login}}" />
   </div>
-  <div>
-    <label class="label">{{user.lastNameLabel}}</label>
-    <input class="control" name="second_name" />
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.firstNameLabel}}</label>
+    <input class="control" name="first_name" value="{{user.firstName}}" />
   </div>
-  <div>
-    <label class="label">{{user.phoneLabel}}</label>
-    <input class="control" name="phone" />
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.lastNameLabel}}</label>
+    <input class="control" name="second_name" value="{{user.lastName}}" />
   </div>
-  <div>
-    <label class="label">{{user.passwordLabel}}</label>
-    <input class="control" name="password" type="password" />
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.phoneLabel}}</label>
+    <input class="control" name="phone" value="{{user.phone}}" />
   </div>
 
-  <div class="login__action">
-    <a class="button button--primary" href="../pages/chats.hbs">{{user.signupButton}}</a>
+  <div class="edit-form__actions actions">
+    <div class="actions__item">
+      <a class="button button--primary" href="../pages/chats.hbs">{{ui.save}}</a>
+    </div>
+    <div class="actions__item">
+      <a class="button button--primary-ghost" href="../pages/user.hbs">{{ui.cancel}}</a>
+    </div>
   </div>
-  <div class="login__link">
-    <a class="link" href="../pages/login.hbs">{{user.loginLink}}</a>
-  </div>
+
 </form>

@@ -1,0 +1,42 @@
+<article class="user-view">
+  <div class="elements-column">
+    <header class="user-view__header form-row">
+      <h1>{{user.firstName}} {{user.lastName}}</h1>
+    </header>
+    <div class="form-row">
+      <div class="avatar user-view__avatar"></div>
+    </div>
+    <div class="form-row form-row--wide">
+      <span class="name">{{ui.user.emailLabel}}</span>
+      <span class="value">{{user.email}}</span>
+    </div>
+    <div class="form-row form-row--wide">
+      <span class="name">{{ui.user.loginLabel}}</span>
+      <span class="value">{{user.login}}</span>
+    </div>
+    <div class="form-row form-row--wide">
+      <span class="name">{{ui.user.firstNameLabel}}</span>
+      <span class="value">{{user.firstName}}</span>
+    </div>
+    <div class="form-row form-row--wide">
+      <span class="name">{{ui.user.lastNameLabel}}</span>
+      <span class="value">{{user.lastName}}</span>
+    </div>
+    <div class="form-row form-row--wide">
+      <span class="name">{{ui.user.phoneLabel}}</span>
+      <span class="value">{{user.phone}}</span>
+    </div>
+
+    <footer class="user__actions actions">
+      <div class="actions__item">
+        <a class="button button--primary" href="../pages/user-edit.hbs">{{ui.edit}}</a>
+      </div>
+      <div class="actions__item">
+        <a class="button button--secondary" href="#">{{ui.changePassword}}</a>
+      </div>
+      <div class="actions__item">
+        <a class="button button--danger-ghost" href="#">{{ui.logout}}</a>
+      </div>
+    </footer>
+  </div>
+</article>

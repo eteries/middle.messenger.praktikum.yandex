@@ -1,5 +1,6 @@
 @import "common/root.css";
 @import "common/base.css";
+@import "common/card.css";
 @import "common/forms.css";
 @import "common/buttons.css";
 @import "common/links.css";
@@ -29,6 +30,18 @@
 
         &--white {
             background-color: white;
+        }
+    }
+
+    &__logo {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+
+        &--inner {
+            top: 18px;
+            left: 15px;
+            width: 80px;
         }
     }
 }
