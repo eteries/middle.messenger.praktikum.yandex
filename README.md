@@ -31,3 +31,8 @@ A practical project for the Yandex.Practicum middle webdev course.
 * <a href="500.hbs">500</a>
 
 
+## Pull requests
+[https://github.com/eteries/middle.messenger.praktikum.yandex/pull/11](https://github.com/eteries/middle.messenger.praktikum.yandex/pull/1)
+
+
+
