@@ -1,0 +1,35 @@
+{
+  "title": "Taper",
+  "save": "Save",
+  "login": "Login",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "edit": "Edit",
+  "changePassword": "Change password",
+  "logout": "Log out",
+  "unavailable": "The service is temporally unavailable",
+  "notFound": "The page is not found",
+  "home": "Home page",
+  "user": {
+    "signupTitle": "Sign up to start chatting",
+    "loginTitle": "Login to start chatting",
+    "loginLabel": "Login",
+    "emailLabel": "Email",
+    "firstNameLabel": "First name",
+    "lastNameLabel": "Last name",
+    "phoneLabel": "Phone",
+    "passwordLabel": "Password",
+    "signupButton": "Signup",
+    "signupLink": "Signup",
+    "loginButton": "Login",
+    "loginLink": "Login",
+    "editLink": "Edit",
+    "editPasswordLink": "Edit password"
+  },
+  "chats": {
+    "empty": "Select a chat to start chatting"
+  },
+  "chat": {
+    "delete": "Delete this chat"
+  }
+}

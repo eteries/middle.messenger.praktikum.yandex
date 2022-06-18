@@ -1,0 +1,41 @@
+<form class="elements-column edit-form">
+  <div class="form-row">
+    <header class="user-view__header form-row">
+      <h1>{{user.firstName}} {{user.lastName}}</h1>
+    </header>
+    <div class="edit-form__avatar">
+      <label for="avatar-upload" class="avatar"></label>
+      <input class="visually-hidden" type="file" id="avatar-upload" />
+    </div>
+  </div>
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.emailLabel}}</label>
+    <input class="control" name="email" type="email" value="{{user.email}}" />
+  </div>
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.loginLabel}}</label>
+    <input class="control" name="login" value="{{user.login}}" />
+  </div>
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.firstNameLabel}}</label>
+    <input class="control" name="first_name" value="{{user.firstName}}" />
+  </div>
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.lastNameLabel}}</label>
+    <input class="control" name="second_name" value="{{user.lastName}}" />
+  </div>
+  <div class="form-row form-row--wide">
+    <label class="label">{{ui.user.phoneLabel}}</label>
+    <input class="control" name="phone" value="{{user.phone}}" />
+  </div>
+
+  <div class="edit-form__actions actions">
+    <div class="actions__item">
+      <a class="button button--primary" href="../pages/chats.hbs">{{ui.save}}</a>
+    </div>
+    <div class="actions__item">
+      <a class="button button--primary-ghost" href="../pages/user.hbs">{{ui.cancel}}</a>
+    </div>
+  </div>
+
+</form>

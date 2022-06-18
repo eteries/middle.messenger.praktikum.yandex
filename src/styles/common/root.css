@@ -1,0 +1,21 @@
+:root {
+    --background-base: #f0f3f7;
+    --border-color: #d3d5d9;
+    --primart-text-color: #15021c;
+
+    --primary-color: #c133f3;
+    --primary-color-lightest: #f9ebfe;
+    --primary-color-lighter: #ecc2fb;
+    --primary-color-darker: #930bc2;
+    --primary-color-darkest: #69088b;
+
+    --secondary-color: #1ac8f8;
+    --secondary-color-lighter: #d3ecf7;
+    --secondary-color-darker: #0aabd5;
+
+    --danger-color: #ff2e2e;
+    --danger-color-lighter: #ff7373;
+    --danger-color-darker: #da1313;
+
+    --gray-color-light: #e4e4ea;
+}

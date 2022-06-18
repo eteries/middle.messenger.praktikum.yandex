@@ -1,0 +1,13 @@
+.login {
+    margin-top: 0;
+    min-width: 370px;
+
+    &__action {
+        margin-top: 20px;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+    }
+}

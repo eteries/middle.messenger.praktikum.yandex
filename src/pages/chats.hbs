@@ -1,0 +1,20 @@
+---
+title: chats
+css: [sidebar.css, chat.css]
+---
+{{!< base}}
+
+<main>
+  <div class="layout">
+    <div class="layout__sidebar">
+      <img class="layout__logo layout__logo--inner"
+           src="../assets/img/logo-taper.svg"
+           width="100"
+           alt="taper web messenger">
+      {{> sidebar}}
+    </div>
+    <div class="layout__content">
+      {{> empty-chat}}
+    </div>
+  </div>
+</main>

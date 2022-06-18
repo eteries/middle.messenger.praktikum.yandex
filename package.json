@@ -1,0 +1,35 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "Taper messenger",
+  "scripts": {
+    "start": "npm run build && npm run server",
+    "build-dev": "parcel src/pages/index.hbs --no-cache",
+    "build": "parcel build src/pages/index.hbs --no-cache",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eteries/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eteries/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/eteries/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@parcel/config-default": "2.4.1",
+    "express": "4.17.3",
+    "parcel": "2.4.1",
+    "postcss": "^8.4.12",
+    "postcss-import": "14.1.0",
+    "postcss-nested": "5.0.6"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

@@ -1,0 +1,11 @@
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: auto;
+
+    &__img {
+        width: 200px;
+    }
+}

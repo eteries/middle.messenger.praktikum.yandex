@@ -1,0 +1,21 @@
+---
+title: User
+css: [user.css]
+isEdit: false
+---
+
+{{!< base}}
+
+<main class="layout">
+  <div class="layout__content">
+    <div class="user card">
+      <a href="chats.hbs"
+         class="button button--round button--primary-ghost user__back"
+         aria-label="{{user.backLink}}">
+        {{> inline-svg/arrow-left}}
+      </a>
+      <h1>{{ui.user.title}}</h1>
+      {{> user-view}}
+    </div>
+  </div>
+</main>

@@ -1,0 +1,50 @@
+.control {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    min-height: 36px;
+    border-radius: 8px;
+    padding: 8px 10px;
+
+    &:focus {
+        outline: 1px solid var(--primary-color);
+    }
+}
+
+.textarea {
+    padding: 0 10px;
+    max-height: 36px;
+
+    &:focus {
+        padding: 10px;
+        max-height: 80px;
+    }
+}
+
+.label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &--wide {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.form-row--wide {
+    .control,
+    .value {
+        max-width: 300px;
+    }
+
+    .label {
+        font-size: 1rem;
+    }
+}
