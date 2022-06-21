@@ -1,14 +1,21 @@
-/*if (window.location.pathname === '/') {
-    window.location.replace('/login.html');
-}*/
+import Block from './utils/block';
 
 import { renderDom } from './utils/render';
-import Signup from './pages/signup/signup';
+import SignupPage from './pages/signup/signup-page';
+import Chat from './pages/chat/chat';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const page = new Signup({});
+    let currentPage: Block;
 
-    renderDom("#app", page);
+    switch(window.location.pathname) {
+        case '/chat':
+            currentPage = new Chat({});
+            break;
+        case '/':
+            currentPage = new SignupPage({});
+            break;
+    }
+    renderDom("#app", currentPage);
 })
 
 

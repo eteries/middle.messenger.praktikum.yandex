@@ -11,7 +11,7 @@ export type ChildrenObject ={
     stab?: string;
 }
 
-export type EventsProp = {[key: string]: () => void};
+export type EventsProp = {[key: string]: (event?: Event) => void};
 
 export type EventBusListener = (...arg: any) => void;
 

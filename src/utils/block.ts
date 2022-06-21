@@ -6,13 +6,14 @@ import { ChildrenObject, EventsProp, PropsObject } from './types';
 export default class Block<Props extends PropsObject = {}> {
     public readonly id: string;
 
-    protected props: any;
+    protected readonly props: any;
     protected children: ChildrenObject[];
 
     private readonly _meta: {props: Props} = null;
     private _events: EventsProp;
     private _element: HTMLElement = null;
     protected _eventBus: () => EventBus;
+    protected _state: any;
 
     constructor(props: Props) {
         const eventBus = new EventBus();
@@ -26,13 +27,18 @@ export default class Block<Props extends PropsObject = {}> {
             props
         };
 
+        this._state = props;
+
         this._registerEvents(eventBus);
         this._eventBus().emit(BlockEvent.INIT);
     }
 
-    public init() {
+    private _init() {
+        this.init();
         this._eventBus().emit(BlockEvent.FLOW_RENDER);
     }
+
+    public init() {}
 
     get element() {
         return this._element;
@@ -43,10 +49,19 @@ export default class Block<Props extends PropsObject = {}> {
     }
 
 
-    public setProps = (nextProps: Props) => {
+    protected setProps = (nextProps: PropsObject) => {
         if (nextProps) {
             Object.assign(this.props, nextProps);
         }
+    };
+
+
+    protected _setState = (update: PropsObject) => {
+        this._state = {
+            ...this._state,
+            ...update
+        }
+        this._eventBus().emit(BlockEvent.FLOW_CDU);
     };
 
     public show() {
@@ -61,7 +76,8 @@ export default class Block<Props extends PropsObject = {}> {
         this._eventBus().emit(BlockEvent.FLOW_CDM);
     }
 
-    // Может переопределять пользователь, необязательно трогать
+    public componentDidRender() {}
+
     protected render(): DocumentFragment {
         return new DocumentFragment();
     }
@@ -85,7 +101,6 @@ export default class Block<Props extends PropsObject = {}> {
         return templateElement.content;
     }
 
-    // Может переопределять пользователь, необязательно трогать
     protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
         return true;
     }
@@ -94,14 +109,19 @@ export default class Block<Props extends PropsObject = {}> {
     protected componentDidMount() {}
 
     private _registerEvents(eventBus: EventBus) {
-        eventBus.on(BlockEvent.INIT, this.init.bind(this));
+        eventBus.on(BlockEvent.INIT, this._init.bind(this));
         eventBus.on(BlockEvent.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(BlockEvent.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(BlockEvent.FLOW_RENDER, this._render.bind(this));
+        eventBus.on(BlockEvent.DOM_READY, this._componentDidRender.bind(this));
     }
 
     private _componentDidMount() {
         this.componentDidMount();
+    }
+
+    private _componentDidRender() {
+        this.componentDidRender();
     }
 
     private _componentDidUpdate(oldProps: Props, newProps: Props) {
@@ -141,6 +161,7 @@ export default class Block<Props extends PropsObject = {}> {
 
         this._element = newElement;
         this._addEvents();
+        this._eventBus().emit(BlockEvent.DOM_READY);
     }
 
     private _makePropsProxy = (props: Props) => {

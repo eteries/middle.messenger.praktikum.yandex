@@ -1,0 +1,19 @@
+.input {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.message {
+    display: none;
+    position: absolute;
+    font-size: 12px;
+    line-height: 14px;
+    bottom: 0;
+    left: 0;
+    color: #da1313;
+    margin: 0;
+
+    .validated + & {
+        display: block;
+    }
+}

@@ -1,0 +1,18 @@
+<main>
+  <div class="layout">
+    <div class="layout__sidebar">
+      <img class="layout__logo layout__logo--inner"
+           src="{{logo}}"
+           width="100"
+           alt="taper web messenger">
+      {{{children.sidebar}}}
+    </div>
+    <div class="layout__content">
+      {{#if isEmpty}}
+        {{{children.empty}}}
+        {{else}}
+        {{{children.chat}}}
+      {{/if}}
+    </div>
+  </div>
+</main>

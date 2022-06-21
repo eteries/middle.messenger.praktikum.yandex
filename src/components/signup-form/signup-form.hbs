@@ -1,9 +1,6 @@
-<form class="elements-column">
-  <div>
-    <label class="label">{{ui.user.emailLabel}}</label>
-    <input class="control" name="email" type="email" />
-  </div>
-  <div>
+<form class="elements-column" novalidate>
+  {{{children.email}}}
+  <!--<div>
     <label class="label">{{ui.user.loginLabel}}</label>
     <input class="control" name="login" />
   </div>
@@ -22,10 +19,10 @@
   <div>
     <label class="label">{{ui.user.passwordLabel}}</label>
     <input class="control" name="password" type="password" />
-  </div>
+  </div>-->
 
   <div class="login__action">
-    <a class="button button--primary" href="chats.hbs">{{ui.user.signupButton}}</a>
+    <button class="button button--primary" type="submit">{{ui.user.signupButton}}</button>
   </div>
   <div class="login__link">
     <a class="link" href="login.hbs">{{ui.user.loginLink}}</a>

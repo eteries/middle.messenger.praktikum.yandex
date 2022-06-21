@@ -4,6 +4,10 @@
 
     &__action {
         margin-top: 20px;
+
+        button {
+            width: 100%;
+        }
     }
 
     &__link {
