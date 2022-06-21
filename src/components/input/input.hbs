@@ -1,5 +1,12 @@
-<div class="input">
-  <label class="label" for="input-{{id}}">{{label}}</label>
-  <input class="control" name="{{name}}" type="{{type}}" id="input-{{id}}"/>
-  <p class="message">{{message}}</p>
-</div>
+{{#if isTextarea}}
+  <div class="input">
+    <textarea class="control textarea" id="input-{{id}}"></textarea>
+    <p class="message">{{message}}</p>
+  </div>
+{{else}}
+  <div class="input">
+    <label class="label" for="input-{{id}}">{{label}}</label>
+    <input class="control" type="{{type}}" id="input-{{id}}"/>
+    <p class="message">{{message}}</p>
+  </div>
+{{/if}}

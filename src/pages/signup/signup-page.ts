@@ -33,10 +33,10 @@ export default class SignupPage extends Block {
     }
 
     private _onSubmit(evt: SubmitEvent) {
-        console.log(evt);
         evt.preventDefault();
         const form = this.props.children.form;
-        console.log('form value', form.value);
-        console.log('form isValid', form.isValid);
+        if (form.isValid) {
+            console.log(form.value);
+        }
     }
 }

@@ -8,7 +8,7 @@
     position: absolute;
     font-size: 12px;
     line-height: 14px;
-    bottom: 0;
+    top: calc(100% - 15px);
     left: 0;
     color: #da1313;
     margin: 0;

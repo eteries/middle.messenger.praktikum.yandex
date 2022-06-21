@@ -6,7 +6,7 @@ interface FormProps extends PropsObject {
     events: {
         submit: (evt: SubmitEvent) => void
     };
-    children: PropsObject;
+    children?: PropsObject;
 }
 
 export default class Form extends Block<FormProps> {
