@@ -8,10 +8,8 @@ A practical project for the Yandex.Practicum middle webdev course.
 
 * [login](https://capable-kataifi-8913eb.netlify.app/login.html)
 * [signup](https://capable-kataifi-8913eb.netlify.app/signup.html)
-* [chats](https://capable-kataifi-8913eb.netlify.app/chats.html)
-* [chat](https://capable-kataifi-8913eb.netlify.app/chat.html)
-* [user](https://capable-kataifi-8913eb.netlify.app/user.html)
-* [edit user](https://capable-kataifi-8913eb.netlify.app/user-edit.html)
+* [chat messanges/empty](https://capable-kataifi-8913eb.netlify.app/chat.html)
+* [user edit / view](https://capable-kataifi-8913eb.netlify.app/user.html)
 * [404](https://capable-kataifi-8913eb.netlify.app/404.html)
 * [500](https://capable-kataifi-8913eb.netlify.app/500.html)
 

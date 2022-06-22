@@ -2,7 +2,7 @@ import templateFunction from './signup-form.hbs';
 import ui from '../../data/ui.json';
 import Input from '../input/input';
 import { Regex } from '../../constants';
-import { PropsObject } from '../../utils/types';
+import { PropsObject } from '../../types/common';
 import Form from '../../utils/form';
 
 interface FormProps {

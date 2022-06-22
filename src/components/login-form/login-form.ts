@@ -1,39 +1,46 @@
-import Block from '../../utils/block';
-import templateFunction from './signup.hbs';
+import templateFunction from './login-form.hbs';
+import ui from '../../data/ui.json';
+import Input from '../input/input';
+import { Regex } from '../../constants';
+import { PropsObject } from '../../types/common';
+import Form from '../../utils/form';
 
-interface LoginFormProps {
+interface FormProps {
     ui: any;
-    user: any;
-    events?: {
-        submit?: (evt: SubmitEvent) => void
-    }
+    events: {
+        submit: (evt: SubmitEvent) => void
+    };
+    children?: PropsObject;
 }
 
-export default class LoginForm extends Block {
-    constructor(props: any) {
+export default class LoginForm extends Form {
+    constructor(props: FormProps) {
         super(props);
     }
 
-    public render() {
-        this._setContext();
-        return this.compile(templateFunction, this.props);
-    }
-
-    private _setContext() {
+    public init() {
+        this._controls = {
+            login: new Input({
+                message: '3-20 letters (or letters + digits)',
+                label: ui.user.loginLabel,
+                type: 'text',
+                pattern: Regex.LOGIN
+            }),
+            password: new Input({
+                message: '3-20 length, at least one digit and one capital letter',
+                label: ui.user.passwordLabel,
+                type: 'password',
+                pattern: Regex.PASSWORD
+            })
+        };
         this.setProps({
-            /*children: {
-                form: new LoginFormForm({
-                    ui,
-                    events: {
-                        'submit': this.onSubmit
-                    }
-                })
-            }*/
+            children: {
+                ...this._controls
+            }
         });
     }
 
-    private onSubmit(evt: SubmitEvent): void {
-        evt.preventDefault();
-        console.log(evt);
+    public render() {
+        return this.compile(templateFunction, {...this.props});
     }
 }

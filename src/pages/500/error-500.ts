@@ -1,39 +1,24 @@
 import Block from '../../utils/block';
-import templateFunction from './signup.hbs';
-
-interface Error500Props {
-    ui: any;
-    user: any;
-    events?: {
-        submit?: (evt: SubmitEvent) => void
-    }
-}
+import templateFunction from './error-500.hbs';
+import img from '../../assets/img/error-status.svg';
+import styles from '../../styles/common/errors.css';
+import ui from '../../data/ui.json';
 
 export default class Error500 extends Block {
-    constructor(props: any) {
-        super(props);
+    constructor() {
+        super();
+    }
+
+    public init() {
+        this.setProps({
+            message: "Service is unavailable",
+            img,
+            styles,
+            ui
+        })
     }
 
     public render() {
-        this._setContext();
-        return this.compile(templateFunction, this.props);
-    }
-
-    private _setContext() {
-        this.setProps({
-            /*children: {
-                form: new Error500Form({
-                    ui,
-                    events: {
-                        'submit': this.onSubmit
-                    }
-                })
-            }*/
-        });
-    }
-
-    private onSubmit(evt: SubmitEvent): void {
-        evt.preventDefault();
-        console.log(evt);
+        return this.compile(templateFunction, {...this.props});
     }
 }

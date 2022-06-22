@@ -14,17 +14,4 @@ export default class EmptyChat extends Block {
     public render() {
         return this.compile(templateFunction, {...this.props, chat});
     }
-
-    private _setContext() {
-        /*this.setProps({
-            children: {
-                form: new EmptyChatForm({
-                    ui,
-                    events: {
-                        'submit': this.onSubmit
-                    }
-                })
-            }
-        });*/
-    }
 }

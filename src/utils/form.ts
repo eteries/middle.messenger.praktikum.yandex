@@ -1,6 +1,6 @@
 import Block from './block';
 import Input from '../components/input/input';
-import { PropsObject } from './types';
+import { PropsObject } from '../types/common';
 
 interface FormProps extends PropsObject {
     events: {
@@ -9,7 +9,7 @@ interface FormProps extends PropsObject {
     children?: PropsObject;
 }
 
-export default class Form extends Block<FormProps> {
+export default class Form extends Block {
     protected _controls: Record<string, Input>
     constructor(props: FormProps) {
         super(props);

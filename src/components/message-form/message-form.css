@@ -1,0 +1,11 @@
+.message-form {
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    padding: 10px 20px;
+
+    .input {
+        flex: 1;
+        padding-top: 15px;
+    }
+}

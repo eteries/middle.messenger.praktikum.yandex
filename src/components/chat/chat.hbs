@@ -11,48 +11,17 @@
     <div class="chat-container">
       <div class="chat">
         <div class="chat-date">
-          <span>{{data.chat.date}}</span>
+          <span>{{chat.date}}</span>
         </div>
-        <div class="chat__message">
-          <div class="chat-message">
-            <div class="chat-message__avatar">
-              <div class="avatar">
-              </div>
-            </div>
-            <div class="message-balloon">
-              <div class="message-content">
-                <p>{{data.chat.message1}}</p>
-                <div class="message-content__time">
-                  {{data.chat.time1}}
-                  {{{check}}}
-                </div>
-              </div>
-            </div>
+        {{#each children.messages }}
+          <div class="chat__message">
+            {{{this}}}
           </div>
-        </div>
-        <div class="chat__message">
-          <div class="chat__message chat-message chat-message--answer">
-            <div class="chat-message__avatar">
-              <div class="avatar"></div>
-            </div>
-            <div class="message-balloon">
-              <div class="message-content">
-                <p>{{data.chat.message2}}</p>
-                <div class="message-content__time">
-                  {{data.chat.time2}}
-                  {{{check}}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {{/each}}
       </div>
     </div>
   </section>
-  <footer class="chat-area__footer chat-footer">
-    <textarea class="control textarea"></textarea>
-    <button class="button button--primary button--round" aria-label="Send">
-      {{{arrow}}}
-    </button>
+  <footer class="chat-area__footer">
+   {{{children.form}}}
   </footer>
 </article>

@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import templateFunction from './signup.hbs';
+import templateFunction from './user-view.hbs';
 
 interface UserViewProps {
     ui: any;
@@ -10,30 +10,11 @@ interface UserViewProps {
 }
 
 export default class UserView extends Block {
-    constructor(props: any) {
+    constructor(props: UserViewProps) {
         super(props);
     }
 
     public render() {
-        this._setContext();
-        return this.compile(templateFunction, this.props);
-    }
-
-    private _setContext() {
-        this.setProps({
-            /*children: {
-                form: new UserViewForm({
-                    ui,
-                    events: {
-                        'submit': this.onSubmit
-                    }
-                })
-            }*/
-        });
-    }
-
-    private onSubmit(evt: SubmitEvent): void {
-        evt.preventDefault();
-        console.log(evt);
+        return this.compile(templateFunction, {...this.props});
     }
 }

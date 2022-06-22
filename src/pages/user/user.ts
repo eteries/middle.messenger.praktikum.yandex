@@ -1,42 +1,48 @@
 import Block from '../../utils/block';
 import templateFunction from './user.hbs';
 import ui from '../../data/ui.json';
-import UserForm from '../../components/user-edit/user-edit-form.hbs';
-import UserView from '../../components/user-view/user-view.hbs';
-import { PropsObject } from '../../utils/types';
-import styles from '../../styles/login.css';
+import user from '../../data/user.json';
 import logo from '../../assets/img/logo-taper.svg';
+import UserEditForm from '../../components/user-edit/user-edit-form';
+import UserView from '../../components/user-view/user-view';
+import left from '../../partials/inline-svg/arrow-left.hbs';
+import styles from './user.css';
 
-export default class User extends Block {
-    private _pageContext: PropsObject;
+export default class UserPage extends Block {
+    constructor() {
+        super();
+    }
 
-    constructor(props: any) {
-        super(props);
+    public init() {
+        this.setProps({
+            isEdit: true,
+            logo,
+            left,
+            styles,
+            children: {
+                form: new UserEditForm({
+                    ui,
+                    events: {
+                        submit: (evt: SubmitEvent) => this._onSubmit(evt)
+                    }
+                }),
+                view: new UserView({
+                    ui,
+                    user
+                })
+            }
+        });
     }
 
     public render() {
-        this._setContext();
-        return this.compile(templateFunction, this._pageContext);
+        return this.compile(templateFunction, {...this.props});
     }
 
-    private _setContext() {
-        this._pageContext = {
-            ui,
-            styles,
-            logo,
-            children: {
-                form: new UserForm({
-                    ui,
-                    events: {
-                        'submit': this.onSubmit
-                    }
-                })
-            }
-        };
-    }
-
-    private onSubmit(evt: SubmitEvent): void {
+    private _onSubmit(evt: SubmitEvent) {
         evt.preventDefault();
-        console.log(evt);
+        const form = this.props.children.form;
+        if (form.isValid) {
+            console.log(form.value);
+        }
     }
 }

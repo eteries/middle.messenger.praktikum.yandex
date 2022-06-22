@@ -1,5 +1,5 @@
 import { BlockEvent } from './events.enum';
-import { EventBusListener, EventBusListeners } from './types';
+import { EventBusListener, EventBusListeners } from '../types/common';
 
 export default class EventBus {
     private readonly listeners: EventBusListeners

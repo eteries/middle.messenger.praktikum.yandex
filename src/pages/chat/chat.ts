@@ -3,22 +3,18 @@ import templateFunction from './chat.hbs';
 import EmptyChat from '../../components/empty-chat/empty-chat';
 import ChatComponent from '../../components/chat/chat';
 import ui from '../../data/ui.json';
+import user from '../../data/ui.json';
 import data from '../../data/data.json';
 import logo from '../../assets/img/logo-taper.svg';
 import Sidebar from '../../components/sidebar/sidebar';
-import styles from '../../styles/chat.css';
+import styles from './chat.css';
 
-export default class Chat extends Block {
-    constructor(props: any) {
-        super(props);
-        this._setChildren();
+export default class ChatPage extends Block {
+    constructor() {
+        super();
     }
 
-    public render() {
-        return this.compile(templateFunction, this._state);
-    }
-
-    private _setChildren() {
+    public init() {
         this.setProps({
             isEmpty: false,
             logo,
@@ -29,7 +25,8 @@ export default class Chat extends Block {
                 }),
                 chat: new ChatComponent({
                     ui,
-                    data
+                    user,
+                    chat: data.chat
                 }),
                 sidebar: new Sidebar({
                     ui,
@@ -37,5 +34,9 @@ export default class Chat extends Block {
                 })
             }
         });
+    }
+
+    public render() {
+        return this.compile(templateFunction, {...this.props});
     }
 }

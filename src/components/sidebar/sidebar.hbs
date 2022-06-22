@@ -1,9 +1,9 @@
 <div class="sidebar">
   <div class="sidebar__profile">
-    <a class="profile-link" href="user.hbs">Profile</a>
+    <a class="profile-link" href="/user.html">Profile</a>
   </div>
   <div class="sidebar__search">
-    <input class="control">
+    {{{children.search}}}
   </div>
   <ul class="chat-list">
     {{#each data.contacts}}

@@ -9,29 +9,24 @@
     </div>
   </div>
   <div class="form-row form-row--wide">
-    <label class="label">{{ui.user.emailLabel}}</label>
-    <input class="control" name="email" type="email" value="{{user.email}}" />
+    {{{children.email}}}
   </div>
   <div class="form-row form-row--wide">
-    <label class="label">{{ui.user.loginLabel}}</label>
-    <input class="control" name="login" value="{{user.login}}" />
+    {{{children.login}}}
   </div>
   <div class="form-row form-row--wide">
-    <label class="label">{{ui.user.firstNameLabel}}</label>
-    <input class="control" name="first_name" value="{{user.firstName}}" />
+    {{{children.firstName}}}
   </div>
   <div class="form-row form-row--wide">
-    <label class="label">{{ui.user.lastNameLabel}}</label>
-    <input class="control" name="second_name" value="{{user.lastName}}" />
+    {{{children.lastName}}}
   </div>
   <div class="form-row form-row--wide">
-    <label class="label">{{ui.user.phoneLabel}}</label>
-    <input class="control" name="phone" value="{{user.phone}}" />
+    {{{children.phone}}}
   </div>
 
   <div class="edit-form__actions actions">
     <div class="actions__item">
-      <a class="button button--primary" href="../../pages/chat/chats.hbs">{{ui.save}}</a>
+      <button class="button button--primary" type="submit">{{ui.save}}</button>
     </div>
     <div class="actions__item">
       <a class="button button--primary-ghost" href="../../pages/user/user.hbs">{{ui.cancel}}</a>

@@ -1,17 +1,11 @@
 <form class="elements-column">
-  <div>
-    <label class="label">{{ui.user.loginLabel}}</label>
-    <input class="control" name="login" />
-  </div>
-  <div>
-    <label class="label">{{ui.user.passwordLabel}}</label>
-    <input class="control" name="password" type="password" />
-  </div>
+  {{{children.login}}}
+  {{{children.password}}}
 
   <div class="login__action">
-    <a class="button button--primary" href="../../pages/chat/chats.hbs">{{ui.user.loginButton}}</a>
+    <button class="button button--primary" type="submit">{{ui.user.loginButton}}</button>
   </div>
   <div class="login__link">
-    <a class="link" href="../../pages/signup.hbs">{{ui.user.signupLink}}</a>
+    <a class="link" href="/signup.html">{{ui.user.signupLink}}</a>
   </div>
 </form>

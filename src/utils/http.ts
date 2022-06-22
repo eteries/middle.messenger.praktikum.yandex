@@ -1,5 +1,5 @@
 import { MethodHTTP } from '../constants';
-import { RequestOptions } from './types';
+import { RequestOptions } from '../types/common';
 
 function queryStringify(data: Record<string, string>) {
     if (typeof data !== 'object') {

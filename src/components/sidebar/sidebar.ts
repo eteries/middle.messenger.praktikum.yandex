@@ -1,31 +1,39 @@
 import Block from '../../utils/block';
 import templateFunction from './sidebar.hbs';
 import styles from '../../styles/sidebar.css';
+import Input from '../input/input';
+import ui from '../../data/ui.json';
+import { Regex } from '../../constants';
+import { Contact } from '../../types/contact';
 
 interface SidebarProps {
-    ui: any;
-    user: any;
+    contacts: Contact[];
 }
 
 export default class Sidebar extends Block {
+    private _controls: Record<string, Block>;
+
     constructor(props: any) {
         super(props);
     }
 
-    public render() {
-        return this.compile(templateFunction, {...this.props, styles});
+    public init() {
+        this._controls = {
+            search: new Input({
+                message: 'not empty',
+                label: '',
+                type: 'text',
+                pattern: Regex.MESSAGE
+            })
+        };
+        this.setProps({
+            children: {
+                ...this._controls
+            }
+        });
     }
 
-    private _setContext() {
-        this.setProps({
-            /*children: {
-                form: new SidebarForm({
-                    ui,
-                    events: {
-                        'submit': this.onSubmit
-                    }
-                })
-            }*/
-        });
+    public render() {
+        return this.compile(templateFunction, {...this.props, styles});
     }
 }

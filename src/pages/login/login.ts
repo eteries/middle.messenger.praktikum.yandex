@@ -1,39 +1,42 @@
 import Block from '../../utils/block';
-import templateFunction from './signup.hbs';
+import templateFunction from './login.hbs';
+import ui from '../../data/ui.json';
+import styles from '../../styles/login.css';
+import logo from '../../assets/img/logo-taper.svg';
+import LoginForm from '../../components/login-form/login-form';
 
-interface LoginProps {
-    ui: any;
-    user: any;
-    events?: {
-        submit?: (evt: SubmitEvent) => void
-    }
-}
+export default class LoginPage extends Block {
+    constructor() {
+        super();
 
-export default class Login extends Block {
-    constructor(props: any) {
-        super(props);
+        this._onSubmit = this._onSubmit.bind(this);
     }
 
-    public render() {
-        this._setContext();
-        return this.compile(templateFunction, this.props);
-    }
-
-    private _setContext() {
+    public init() {
         this.setProps({
-            /*children: {
+            ui,
+            styles,
+            logo,
+            children: {
                 form: new LoginForm({
                     ui,
                     events: {
-                        'submit': this.onSubmit
+                        submit: (evt) => this._onSubmit(evt)
                     }
                 })
-            }*/
+            }
         });
     }
 
-    private onSubmit(evt: SubmitEvent): void {
+    public render() {
+        return this.compile(templateFunction, {...this.props});
+    }
+
+    private _onSubmit(evt: SubmitEvent) {
         evt.preventDefault();
-        console.log(evt);
+        const form = this.props.children.form;
+        if (form.isValid) {
+            console.log(form.value);
+        }
     }
 }

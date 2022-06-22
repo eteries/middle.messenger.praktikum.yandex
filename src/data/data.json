@@ -14,10 +14,20 @@
         }
     ],
     "chat": {
-        "date": "10.04.2022",
-        "time1": "17:44",
-        "time2": "17:55",
-        "message1": "The first message",
-        "message2": "The second message"
+        "date": "10.06.2022",
+        "messages": [
+            {
+                "id": 1,
+                "time": "17:44",
+                "message": "The first message",
+                "isMine": true
+            },
+            {
+                "id": 2,
+                "time": "17:55",
+                "message": "The second message",
+                "isMine": false
+            }
+        ]
     }
 }

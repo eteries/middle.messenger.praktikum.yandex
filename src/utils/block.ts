@@ -1,21 +1,21 @@
 import EventBus from './event-bus';
 import { BlockEvent } from './events.enum';
 import { nanoid } from 'nanoid';
-import { ChildrenObject, EventsProp, PropsObject } from './types';
+import { ChildItem, ChildrenObject, EventsProp, PropsObject } from '../types/common';
 
-export default class Block<Props extends PropsObject = {}> {
+export default class Block {
     public readonly id: string;
 
-    protected readonly props: any;
-    protected children: ChildrenObject[];
+    protected readonly props: PropsObject;
 
-    private readonly _meta: {props: Props} = null;
+    private readonly _meta: {props: PropsObject} = null;
     private _events: EventsProp;
     private _element: HTMLElement = null;
+    private _children: ChildrenObject[];
     protected _eventBus: () => EventBus;
     protected _state: any;
 
-    constructor(props: Props) {
+    constructor(props: PropsObject = {}) {
         const eventBus = new EventBus();
         this._eventBus = () => eventBus;
 
@@ -86,22 +86,43 @@ export default class Block<Props extends PropsObject = {}> {
         const templateElement = this._createDocumentElement('template') as HTMLTemplateElement;
 
         if (context?.children) {
-            context.children = this._mapChildrenToStabs(context.children);
+            this._children = this._mapChildrenToStabs(context.children);
+            context.children = this._children.reduce((acc: PropsObject, {key, block, stab}): PropsObject => {
+                if (Array.isArray(block)) {
+                    block.forEach((item) => {
+                        acc = {
+                            ...acc,
+                            [key]: {
+                                ...acc[key],
+                                [item.key]: item.stab
+                            }
+                        }
+                    });
+                }
+                else {
+                    acc[key] = stab;
+                }
+                return acc;
+            }, {});
         }
 
         templateElement.innerHTML = generateTemplate(context);
 
-        this.children?.forEach((child) => {
-            const stab = templateElement.content.querySelector(`[data-id="id-${child.block.id}"]`);
-            if (stab) {
-                stab.replaceWith(child.block.getContent());
-            }
-        })
-
+        this._children?.forEach((child: ChildrenObject) => {
+            const replaceStab = (item: ChildrenObject) => {
+                const stab = templateElement.content.querySelector(`[data-id="id-${item.block.id}"]`);
+                if (stab) {
+                    stab.replaceWith(item.block.getContent());
+                }
+            };
+            Array.isArray(child.block)
+                ? child.block.forEach(replaceStab)
+                : replaceStab(child);
+        });
         return templateElement.content;
     }
 
-    protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+    protected componentDidUpdate(oldProps: PropsObject, newProps: PropsObject): boolean {
         return true;
     }
 
@@ -124,7 +145,7 @@ export default class Block<Props extends PropsObject = {}> {
         this.componentDidRender();
     }
 
-    private _componentDidUpdate(oldProps: Props, newProps: Props) {
+    private _componentDidUpdate(oldProps: PropsObject, newProps: PropsObject) {
         const componentDidUpdate = this.componentDidUpdate(oldProps, newProps);
 
         if (componentDidUpdate) {
@@ -164,13 +185,13 @@ export default class Block<Props extends PropsObject = {}> {
         this._eventBus().emit(BlockEvent.DOM_READY);
     }
 
-    private _makePropsProxy = (props: Props) => {
+    private _makePropsProxy = (props = {}) => {
         const eventBus = this._eventBus();
         return new Proxy(props, {
-            get(target: Props, prop: keyof Props) {
+            get(target: PropsObject, prop: keyof PropsObject) {
                 return target[prop];
             },
-            set(target: Props, prop: keyof Props, value: any) {
+            set(target: PropsObject, prop: keyof PropsObject, value: any) {
                 const old = {...this.props};
                 target[prop] = value;
                 eventBus.emit(BlockEvent.FLOW_CDU, old, target);
@@ -183,20 +204,27 @@ export default class Block<Props extends PropsObject = {}> {
     }
 
     private _createDocumentElement(tagName: string) {
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         return document.createElement(tagName);
     }
 
-    private _mapChildrenToStabs(children: Record<string, Block>) {
-        this.children = Object.entries(children).map(([key, block]: [string, Block]) => ({
-            key,
-            block,
-            stab: `<div data-id="id-${block.id}"></div>`
-        }));
-
-        return this.children.reduce((acc:any, child: ChildrenObject) => {
-            acc[child.key] = child.stab;
-            return acc;
-        }, {})
+    private _mapChildrenToStabs(children: ChildItem | ChildItem[]): any {
+        const mapper = (([key, value]: [string, Block]) => (
+            {
+                key,
+                block: value,
+                stab: `<div data-id="id-${value.id}"></div>`
+            })
+        );
+        return Object.entries(children).map(([key, value]) => {
+            if (value instanceof Block) {
+                return mapper([key, value]);
+            }
+            else {
+                return {
+                    key,
+                    block: Object.entries(value).map(mapper)
+                }
+            }
+        });
     }
 }

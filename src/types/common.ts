@@ -1,16 +1,17 @@
-import { BlockEvent } from './events.enum';
-import Block from './block';
+import { BlockEvent } from '../utils/events.enum';
+import Block from '../utils/block';
 import { MethodHTTP } from '../constants';
 
-export type Nullable<T> = T | null;
 
 export type PropsObject = {[key: string | symbol]: any};
 
-export type ChildrenObject ={
+export type ChildrenObject = {
     key: string;
     block: Block;
     stab?: string;
 }
+
+export type ChildItem = Record<string, Block>;
 
 export type EventsProp = {[key: string]: (event?: Event) => void};
 
@@ -24,3 +25,5 @@ export type RequestOptions = {
     timeout?: number;
     data?: any
 };
+
+export type Nullable<T> = T | null;

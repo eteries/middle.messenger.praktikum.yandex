@@ -1,18 +1,11 @@
----
-title: Error
-css: [errors.css]
----
-
-{{!< base}}
-
 <main class="layout">
   <div class="layout__content layout__content--white center-container">
     <div class="error">
-      <h1>{{ui.unavailable}}</h1>
+      <h1>{{message}}</h1>
       <img class="error__img"
-           src="../../assets/img/error-status.svg"
+           src="{{img}}"
            alt="">
-      <a href="../login/login.hbs">{{ui.home}}</a>
+      <a href="../login/login.html">{{ui.home}}</a>
     </div>
   </div>
 </main>

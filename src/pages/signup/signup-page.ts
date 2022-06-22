@@ -6,10 +6,10 @@ import logo from '../../assets/img/logo-taper.svg';
 import SignupForm from '../../components/signup-form/signup-form';
 
 export default class SignupPage extends Block {
-    constructor(props: any) {
-        super(props);
-        this._onSubmit = this._onSubmit.bind(this);
+    constructor() {
+        super();
 
+        this._onSubmit = this._onSubmit.bind(this);
     }
 
     init() {
