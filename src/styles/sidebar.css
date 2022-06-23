@@ -31,10 +31,8 @@
 
 .contact {
     display: grid;
-    grid-template-areas:
-            "avatar name day"
-            "avatar content num";
-
+    grid-template-areas: "avatar name day"
+        "avatar content num";
     grid-auto-rows: min-content min-content;
     grid-template-columns: 55px 1fr 20px;
     gap: 5px;

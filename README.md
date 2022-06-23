@@ -2,6 +2,10 @@
 
 A practical project for the Yandex.Practicum middle webdev course.
 
+## Functionality and tools
+
+A single page application. It uses Handlebars to generate nested components (including pages and forms). Other tools used: postcss, eslint, stylelint, nanoid.
+
 ## Netlify
 
 [https://capable-kataifi-8913eb.netlify.app](https://capable-kataifi-8913eb.netlify.app)

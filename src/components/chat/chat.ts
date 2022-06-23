@@ -6,7 +6,7 @@ import check from '../../partials/inline-svg/double-check.hbs';
 import MessageForm from '../message-form/message-form';
 import { Chat, ChatMessage } from '../../types/chat';
 import MessageComponent from '../message/message';
-import { ChildrenObject, PropsObject } from '../../types/common';
+import { PropsObject } from '../../types/common';
 
 interface ChatProps {
     ui: any;
@@ -15,7 +15,7 @@ interface ChatProps {
 }
 
 export default class ChatComponent extends Block {
-    constructor(props: any) {
+    constructor(props: ChatProps) {
         super(props);
 
         this._onSubmit = this._onSubmit.bind(this);
