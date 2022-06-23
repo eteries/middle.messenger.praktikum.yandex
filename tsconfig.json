@@ -1,14 +1,10 @@
 {
     "compilerOptions": {
-        "outDir": "./build/",
-        "sourceMap": true,
         "noImplicitAny": true,
-        "module": "es6",
-        "target": "es5",
-        "jsx": "react",
-        "allowJs": true,
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "sourceMap": true,
+        "strictNullChecks": true,
         "allowSyntheticDefaultImports":  true,
         "lib": [
             "dom",
