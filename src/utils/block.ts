@@ -22,7 +22,7 @@ export default class Block {
         this.id = nanoid(6);
 
         this.props = this._makePropsProxy(props);
-        this._events = this.props?.events;
+        this._events = this.props && this.props.events;
         this._meta = {
             props
         };
@@ -85,7 +85,7 @@ export default class Block {
     protected compile(generateTemplate: (context: PropsObject) => string, context: PropsObject): DocumentFragment {
         const templateElement = this._createDocumentElement('template') as HTMLTemplateElement;
 
-        if (context?.children) {
+        if (context && context.children) {
             this._children = this._mapChildrenToStabs(context.children);
             context.children = this._children.reduce((acc: PropsObject, {key, block, stab}): PropsObject => {
                 if (Array.isArray(block)) {
@@ -108,7 +108,7 @@ export default class Block {
 
         templateElement.innerHTML = generateTemplate(context);
 
-        this._children?.forEach((child: ChildrenObject) => {
+        this._children && this._children.forEach((child: ChildrenObject) => {
             const replaceStab = (item: ChildrenObject) => {
                 const stab = templateElement.content.querySelector(`[data-id="id-${item.block.id}"]`);
                 if (stab) {
@@ -173,7 +173,7 @@ export default class Block {
 
     private _render() {
         this._removeEvents();
-        this._events = this.props?.events;
+        this._events = this.props && this.props.events;
 
         const newElement = this.render().firstElementChild as HTMLElement;
         if (this._element !== null) {

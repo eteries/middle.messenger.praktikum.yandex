@@ -25,7 +25,7 @@ export default class EventBus {
     }
 
     public emit(event: BlockEvent, ...args: any[]) {
-        if (this.listeners[event]?.length > 0) {
+        if (this.listeners[event] && this.listeners[event].length > 0) {
             this.listeners[event].forEach((listener) => listener(...args));
         }
     }
