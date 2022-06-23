@@ -4,13 +4,6 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "sourceMap": true,
-        "strictNullChecks": true,
-        "allowSyntheticDefaultImports":  true,
-        "lib": [
-            "dom",
-            "es5",
-            "scripthost",
-            "es2017"
-        ]
+        "strictNullChecks": true
     }
 }
