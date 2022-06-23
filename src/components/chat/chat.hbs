@@ -13,11 +13,12 @@
         <div class="chat-date">
           <span>{{chat.date}}</span>
         </div>
-        {{#each children.messages }}
           <div class="chat__message">
-            {{{this}}}
+              {{{children.messages.message1}}}
           </div>
-        {{/each}}
+          <div class="chat__message">
+              {{{children.messages.message2}}}
+          </div>
       </div>
     </div>
   </section>
