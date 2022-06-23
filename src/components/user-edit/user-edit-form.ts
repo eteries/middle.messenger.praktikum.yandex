@@ -32,13 +32,13 @@ export default class UserEditForm extends Form {
                 type: 'text',
                 pattern: Regex.LOGIN
             }),
-            firstName: new Input({
+            first_name: new Input({
                 message: 'Letters, hyphens are allowed (the 1st letter is capitalized)',
                 label: ui.user.firstNameLabel,
                 type: 'text',
                 pattern: Regex.NAME
             }),
-            lastName: new Input({
+            last_name: new Input({
                 message: 'Letters, hyphens are allowed (the 1st letter is capitalized)',
                 label: ui.user.lastNameLabel,
                 type: 'text',
