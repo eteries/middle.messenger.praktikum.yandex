@@ -32,7 +32,8 @@ A single page application. It uses Handlebars to generate nested components (inc
 [https://www.figma.com/file/HdTU5GLzwV4Ctjjb5NPq9L/Taper?node-id=0%3A1](https://www.figma.com/file/HdTU5GLzwV4Ctjjb5NPq9L/Taper?node-id=0%3A1)
 
 ## Pull requests
-[https://github.com/eteries/middle.messenger.praktikum.yandex/pull/11](https://github.com/eteries/middle.messenger.praktikum.yandex/pull/1)
+[https://github.com/eteries/middle.messenger.praktikum.yandex/pull/2](https://github.com/eteries/middle.messenger.praktikum.yandex/pull/2)
+[https://github.com/eteries/middle.messenger.praktikum.yandex/pull/1](https://github.com/eteries/middle.messenger.praktikum.yandex/pull/1)
 
 
 
