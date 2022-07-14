@@ -1,21 +1,20 @@
 import EventBus from './event-bus';
 import { BlockEvent } from './events.enum';
 import { nanoid } from 'nanoid';
-import { ChildItem, ChildrenObject, EventsProp, PropsObject } from '../types/common';
+import { ChildItem, ChildrenObject, EventsProp, Indexed, Nullable } from '../types/common';
 
 export default class Block {
     public readonly id: string;
 
-    protected readonly props: PropsObject;
+    protected readonly props: Indexed;
 
-    private readonly _meta: {props: PropsObject} = null;
     private _events: EventsProp;
-    private _element: HTMLElement = null;
+    private _element: Nullable<HTMLElement> = null;
     private _children: ChildrenObject[];
     protected _eventBus: () => EventBus;
     protected _state: any;
 
-    constructor(props: PropsObject = {}) {
+    constructor(props: Indexed = {}) {
         const eventBus = new EventBus();
         this._eventBus = () => eventBus;
 
@@ -23,9 +22,6 @@ export default class Block {
 
         this.props = this._makePropsProxy(props);
         this._events = this.props && this.props.events;
-        this._meta = {
-            props
-        };
 
         this._state = props;
 
@@ -49,14 +45,14 @@ export default class Block {
     }
 
 
-    protected setProps = (nextProps: PropsObject) => {
+    protected setProps = (nextProps: Indexed) => {
         if (nextProps) {
             Object.assign(this.props, nextProps);
         }
     };
 
 
-    protected _setState = (update: PropsObject) => {
+    protected _setState = (update: Indexed) => {
         this._state = {
             ...this._state,
             ...update
@@ -65,11 +61,15 @@ export default class Block {
     };
 
     public show() {
-        this.element.style.display = 'block';
+        if (this.element !== null) {
+            this.element.style.display = 'block';
+        }
     }
 
     public hide() {
-        this.element.style.display = 'none';
+        if (this.element !== null) {
+            this.element.style.display = 'none';
+        }
     }
 
     public dispatchComponentDidMount() {
@@ -82,12 +82,12 @@ export default class Block {
         return new DocumentFragment();
     }
 
-    protected compile(generateTemplate: (context: PropsObject) => string, context: PropsObject): DocumentFragment {
+    protected compile(generateTemplate: (context: Indexed) => string, context: Indexed): DocumentFragment {
         const templateElement = this._createDocumentElement('template') as HTMLTemplateElement;
 
         if (context && context.children) {
             this._children = this._mapChildrenToStabs(context.children);
-            context.children = this._children.reduce((acc: PropsObject, {key, block, stab}): PropsObject => {
+            context.children = this._children.reduce((acc: Indexed, {key, block, stab}): Indexed => {
                 if (Array.isArray(block)) {
                     block.forEach((item) => {
                         acc = {
@@ -112,7 +112,7 @@ export default class Block {
             const replaceStab = (item: ChildrenObject) => {
                 const stab = templateElement.content.querySelector(`[data-id="id-${item.block.id}"]`);
                 if (stab) {
-                    stab.replaceWith(item.block.getContent());
+                    stab.replaceWith(item.block.getContent() as HTMLElement);
                 }
             };
             Array.isArray(child.block)
@@ -122,7 +122,7 @@ export default class Block {
         return templateElement.content;
     }
 
-    protected componentDidUpdate(oldProps: PropsObject, newProps: PropsObject): boolean {
+    protected componentDidUpdate(oldProps: Indexed, newProps: Indexed): boolean {
         return true;
     }
 
@@ -145,7 +145,7 @@ export default class Block {
         this.componentDidRender();
     }
 
-    private _componentDidUpdate(oldProps: PropsObject, newProps: PropsObject) {
+    private _componentDidUpdate(oldProps: Indexed, newProps: Indexed) {
         const componentDidUpdate = this.componentDidUpdate(oldProps, newProps);
 
         if (componentDidUpdate) {
@@ -158,7 +158,9 @@ export default class Block {
     private _addEvents() {
         if (this._events) {
             Object.entries(this._events).forEach(([eventName, listener]: [string, () => void]) => {
-                this.element.addEventListener(eventName, listener);
+                if (this.element !== null) {
+                    this.element.addEventListener(eventName, listener);
+                }
             });
         }
     }
@@ -166,7 +168,9 @@ export default class Block {
     private _removeEvents() {
         if (this._events !== undefined && this.element !== null) {
             Object.entries(this._events).forEach(([eventName, listener]: [string, () => void]) => {
-                this.element.removeEventListener(eventName, listener);
+                if (this.element !== null) {
+                    this.element.removeEventListener(eventName, listener);
+                }
             });
         }
     }
@@ -188,16 +192,16 @@ export default class Block {
     private _makePropsProxy = (props = {}) => {
         const eventBus = this._eventBus();
         return new Proxy(props, {
-            get(target: PropsObject, prop: keyof PropsObject) {
+            get(target: Indexed, prop: keyof Indexed) {
                 return target[prop];
             },
-            set(target: PropsObject, prop: keyof PropsObject, value: any) {
+            set(target: Indexed, prop: keyof Indexed, value: any) {
                 const old = {...this.props};
                 target[prop] = value;
                 eventBus.emit(BlockEvent.FLOW_CDU, old, target);
                 return true;
             },
-            deleteProperty(target, property) {
+            deleteProperty() {
                 throw new Error('нет доступа');
             }
         })

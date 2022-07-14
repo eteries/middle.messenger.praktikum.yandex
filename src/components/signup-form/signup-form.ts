@@ -2,7 +2,7 @@ import templateFunction from './signup-form.hbs';
 import ui from '../../data/ui.json';
 import Input from '../input/input';
 import { Regex } from '../../constants';
-import { PropsObject } from '../../types/common';
+import { Indexed } from '../../types/common';
 import Form from '../../utils/form';
 
 interface FormProps {
@@ -10,7 +10,7 @@ interface FormProps {
     events: {
         submit: (evt: SubmitEvent) => void
     };
-    children?: PropsObject;
+    children?: Indexed;
 }
 
 export default class SignupForm extends Form {

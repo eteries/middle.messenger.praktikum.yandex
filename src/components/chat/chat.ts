@@ -6,7 +6,7 @@ import check from '../../partials/inline-svg/double-check.hbs';
 import MessageForm from '../message-form/message-form';
 import { Chat, ChatMessage } from '../../types/chat';
 import MessageComponent from '../message/message';
-import { PropsObject } from '../../types/common';
+import { Indexed } from '../../types/common';
 
 interface ChatProps {
     ui: any;
@@ -22,7 +22,7 @@ export default class ChatComponent extends Block {
     }
 
     public init() {
-        const messages: PropsObject = {};
+        const messages: Indexed = {};
         this.props.chat.messages.forEach((message: ChatMessage) => {
             messages[`message${message.id}`] = new MessageComponent(message)
         });

@@ -3,7 +3,7 @@ import Block from '../utils/block';
 import { MethodHTTP } from '../constants';
 
 
-export type PropsObject = {[key: string | symbol]: any};
+export type Indexed = {[key: string | symbol]: any};
 
 export type ChildrenObject = {
     key: string;
@@ -27,3 +27,7 @@ export type RequestOptions = {
 };
 
 export type Nullable<T> = T | null;
+
+export type BlockClass = {
+    new(props?: Indexed): Block;
+}
