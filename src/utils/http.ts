@@ -50,7 +50,12 @@ export default class HTTPTransport {
             });
 
             xhr.onload = function() {
-                resolve(JSON.parse(xhr.response))
+                try {
+                    resolve(JSON.parse(xhr.response));
+                }
+                catch {
+                    resolve(xhr.response)
+                }
             };
 
             xhr.onabort = reject;

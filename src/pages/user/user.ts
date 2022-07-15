@@ -7,15 +7,28 @@ import UserEditForm from '../../components/user-edit/user-edit-form';
 import UserView from '../../components/user-view/user-view';
 import left from '../../partials/inline-svg/arrow-left.hbs';
 import styles from './user.css';
+import AuthorizationService from '../../services/authorization-service';
+import Router from '../../utils/router';
+import { hasError } from '../../utils/network';
+import ChangePassword from '../../components/password-change/password-change';
 
 export default class UserPage extends Block {
+    private readonly _authorizationService: AuthorizationService;
+    private readonly _router: Router;
+
     constructor() {
         super();
+
+        this._authorizationService = new AuthorizationService();
+        this._router = new Router();
+
+        this._onClick = this._onClick.bind(this);
     }
 
     public init() {
         this.setProps({
-            isEdit: true,
+            isEdit: false,
+            isPasswordModalOpen: false,
             logo,
             left,
             styles,
@@ -23,12 +36,23 @@ export default class UserPage extends Block {
                 form: new UserEditForm({
                     ui,
                     events: {
-                        submit: (evt: SubmitEvent) => this._onSubmit(evt)
+                        submit: (evt: SubmitEvent) => this._onSubmit(evt),
+                        click: (evt: PointerEvent) => this._onClick(evt)
                     }
                 }),
                 view: new UserView({
                     ui,
-                    user
+                    user,
+                    events: {
+                        click: (evt: PointerEvent) => this._onClick(evt),
+                    }
+                }),
+                password: new ChangePassword({
+                    ui,
+                    user,
+                    events: {
+                        submit: (evt: SubmitEvent) => this._onPasswordSubmit(evt)
+                    }
                 })
             }
         });
@@ -38,11 +62,40 @@ export default class UserPage extends Block {
         return this.compile(templateFunction, {...this.props});
     }
 
+    private async _logout() {
+        const result = await this._authorizationService.logout();
+        if (!hasError(result)) {
+            this._router.navigate('/');
+        }
+    }
+
     private _onSubmit(evt: SubmitEvent) {
         evt.preventDefault();
         const form = this.props.children.form;
         if (form.isValid) {
             console.log(form.value);
+        }
+    }
+
+    private _onPasswordSubmit(evt: SubmitEvent) {
+        evt.preventDefault();
+        const form = this.props.children.password;
+        if (form.isValid) {
+            console.log(form.value);
+        }
+    }
+
+    private _onClick(evt: PointerEvent) {
+        const targetId = (evt.target as HTMLElement).id;
+        switch (targetId) {
+            case 'edit':
+                this.setProps({isEdit: true});
+                break;
+            case 'password':
+                this.setProps({isPasswordModalOpen: true});
+                break;
+            case 'logout':
+                this._logout();
         }
     }
 }

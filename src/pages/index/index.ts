@@ -17,6 +17,7 @@ export default class Index extends Block {
         this._auth.getCurrentUser()
             .then(
                 (response) => {
+                    console.log(response);
                     if (hasError(response)) {
                         this._router.navigate('/signup.html');
                     } else {

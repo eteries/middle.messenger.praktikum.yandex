@@ -12,7 +12,6 @@ export default class AuthorizationApiService {
                 'content-type': 'application/json'
             },
             data: user,
-            'credentials': 'include',
             'mode': 'cors'
         });
     }
@@ -23,7 +22,6 @@ export default class AuthorizationApiService {
                 'content-type': 'application/json'
             },
             data: account,
-            'credentials': 'include',
             'mode': 'cors'
         });
     }
@@ -34,7 +32,6 @@ export default class AuthorizationApiService {
 
     public getCurrentUser() {
         return this._http.get<UserDTO | APIError>(`${this._url}/auth/user`, {
-            'credentials': 'include',
             'mode': 'cors',
         });
     }

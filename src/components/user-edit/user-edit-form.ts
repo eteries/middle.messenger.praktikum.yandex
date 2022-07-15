@@ -8,7 +8,8 @@ import Form from '../../utils/form';
 interface FormProps {
     ui: any;
     events: {
-        submit: (evt: SubmitEvent) => void
+        submit: (evt: SubmitEvent) => void,
+        click: (evt: PointerEvent) => void
     };
     children?: Indexed;
 }

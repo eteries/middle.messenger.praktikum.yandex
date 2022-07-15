@@ -5,7 +5,7 @@ interface UserViewProps {
     ui: any;
     user: any;
     events?: {
-        submit?: (evt: SubmitEvent) => void
+        click?: (evt: MouseEvent) => void
     }
 }
 
