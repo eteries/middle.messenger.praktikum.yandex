@@ -11,6 +11,7 @@ import AuthorizationService from '../../services/authorization-service';
 import Router from '../../utils/router';
 import { hasError } from '../../utils/network';
 import ChangePassword from '../../components/password-change/password-change';
+import store, { StoreEvent } from '../../store/store';
 
 export default class UserPage extends Block {
     private readonly _authorizationService: AuthorizationService;
@@ -21,6 +22,13 @@ export default class UserPage extends Block {
 
         this._authorizationService = new AuthorizationService();
         this._router = new Router();
+
+        this._authorizationService.getCurrentUser();
+
+        store.on(StoreEvent.Updated, () => {
+            this.setProps(store.getState());
+            console.log(this.props);
+        });
 
         this._onClick = this._onClick.bind(this);
     }

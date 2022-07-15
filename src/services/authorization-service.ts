@@ -1,5 +1,6 @@
 import AuthorizationApiService from './authorization-api-service';
 import { AccountValue, UserValueDTO } from '../types/user';
+import store from '../store/store';
 
 export default class AuthorizationService {
     private readonly _authorizationApiService = new AuthorizationApiService();
@@ -16,7 +17,8 @@ export default class AuthorizationService {
         return this._authorizationApiService.logout();
     }
 
-    public getCurrentUser() {
-        return this._authorizationApiService.getCurrentUser();
+    public async getCurrentUser() {
+        const result = await this._authorizationApiService.getCurrentUser();
+        store.set('user', result)
     }
 }
