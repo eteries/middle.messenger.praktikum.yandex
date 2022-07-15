@@ -23,7 +23,10 @@ export type RequestOptions = {
     headers?: Record<string, string>;
     method?: MethodHTTP;
     timeout?: number;
-    data?: any
+    data?: any,
+    credentials?: string,
+    mode?: string
+
 };
 
 export type Nullable<T> = T | null;

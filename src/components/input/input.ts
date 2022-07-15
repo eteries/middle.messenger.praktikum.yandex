@@ -5,7 +5,7 @@ import { style } from './input.css';
 
 interface InputProps {
     label: string;
-    type: string;
+    type?: string;
     message: string;
     pattern: RegExp;
 
@@ -24,6 +24,7 @@ export default class Input extends Block {
         this._setState({
             ...this.props,
             id: this._id,
+            type: this.props.type ?? 'text',
             isTextarea: this.props.type === 'textarea',
             style
         });
@@ -52,9 +53,12 @@ export default class Input extends Block {
     }
 
     private _addInnerListeners() {
-        this._control = this.element.querySelector(`[id="input-${this._id}"]`);
-        this._control.addEventListener('blur', () => this.validate());
-        this._control.addEventListener('focus', () => this.cleanValidation());
+        this._control = this.element?.querySelector(`[id="input-${this._id}"]`) as HTMLInputElement;
+
+        if (this._control) {
+            this._control.addEventListener('blur', () => this.validate());
+            this._control.addEventListener('focus', () => this.cleanValidation());
+        }
     }
 
     componentDidRender() {

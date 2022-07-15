@@ -9,7 +9,7 @@ export default class Router {
     public routes: Route[];
     public history: History;
 
-    constructor(rootQuery: string) {
+    constructor(rootQuery: string = '#app') {
         if (Router.__instance) {
             return Router.__instance;
         }
@@ -54,7 +54,7 @@ export default class Router {
         (route as Route).render(params);
     }
 
-    navigate(pathname: string, params: URLSearchParams) {
+    navigate(pathname: string, params?: URLSearchParams) {
         this.history.pushState({}, '', pathname);
         this._onRoute(pathname, params);
     }

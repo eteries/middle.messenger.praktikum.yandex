@@ -1,3 +1,4 @@
+import IndexPage from './pages/index/index';
 import SignupPage from './pages/signup/signup-page';
 import ChatPage from './pages/chat/chat';
 import LoginPage from './pages/login/login';
@@ -10,9 +11,10 @@ const router = new Router("#app");
 
 document.addEventListener('DOMContentLoaded', () => {
     router
-        .use('/', SignupPage)
+        .use('/', IndexPage)
         .use('/chat.html', ChatPage)
         .use('/login.html', LoginPage)
+        .use('/signup.html', SignupPage)
         .use('/user.html', UserPage)
         .use('/500.html', Error500)
         .use('**', Error404)
