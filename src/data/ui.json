@@ -27,9 +27,11 @@
     "editPasswordLink": "Edit password"
   },
   "chats": {
-    "empty": "Select a chat to start chatting"
+    "empty": "Select a chat to start chatting",
+    "create": "or create a new one"
   },
   "chat": {
-    "delete": "Delete this chat"
+    "remove": "Remove user from the chat",
+    "add": "Add a user to the chat"
   }
 }

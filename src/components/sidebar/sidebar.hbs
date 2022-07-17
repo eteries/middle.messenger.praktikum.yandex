@@ -6,14 +6,14 @@
     {{{children.search}}}
   </div>
   <ul class="chat-list">
-    {{#each data.contacts}}
+    {{#each chats}}
       <a class="contact" href="chat.html?id={{this.id}}">
-        <div class="contact__avatar"></div>
-        <div class="contact__name">{{this.name}}</div>
+        <div class="contact__avatar">{{this.avatar}}</div>
+        <div class="contact__name">{{this.title}}</div>
         <div class="contact__day">{{this.day}}</div>
         <div class="contact__content">{{this.content}}</div>
           {{#if this.num}}
-            <div class="contact__num">{{this.num}}</div>
+            <div class="contact__num">{{this.unread_count}}</div>
           {{/if}}
 
       </a>

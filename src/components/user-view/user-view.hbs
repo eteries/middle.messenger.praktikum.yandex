@@ -1,7 +1,13 @@
 <article class="user-view">
   <div class="elements-column">
     <header class="user-view__header form-row">
-      <h1>{{user.firstName}} {{user.lastName}}</h1>
+      <h1>
+          {{#if display_name}}
+              {{user.display_name}}
+          {{else}}
+              {{user.first_name}} {{user.second_name}}
+          {{/if}}
+      </h1>
     </header>
     <div class="form-row">
       <div class="avatar user-view__avatar"></div>
@@ -16,11 +22,11 @@
     </div>
     <div class="form-row form-row--wide">
       <span class="name">{{ui.user.firstNameLabel}}</span>
-      <span class="value">{{user.firstName}}</span>
+      <span class="value">{{user.first_name}}</span>
     </div>
     <div class="form-row form-row--wide">
       <span class="name">{{ui.user.lastNameLabel}}</span>
-      <span class="value">{{user.lastName}}</span>
+      <span class="value">{{user.second_name}}</span>
     </div>
     <div class="form-row form-row--wide">
       <span class="name">{{ui.user.phoneLabel}}</span>

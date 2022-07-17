@@ -1,31 +1,33 @@
-import templateFunction from './password-change.hbs';
+import templateFunction from './create-chat.hbs';
 import Input from '../input/input';
 import { Regex } from '../../constants';
 import { Indexed } from '../../types/common';
 import Form from '../../utils/form';
 import arrow from '../../partials/inline-svg/arrow-right.hbs';
-import ui from '../../data/ui.json';
 
 interface FormProps {
     ui: Indexed,
+    onClose: () => void,
     events: {
         submit: (evt: SubmitEvent) => void
     };
     children?: Indexed;
 }
 
-export default class PasswordChange extends Form {
+export default class CreateChat extends Form {
     constructor(props: FormProps) {
         super(props);
+
+        (this.element?.querySelector('button') as HTMLButtonElement)
+            .addEventListener('click', () => this._close())
     }
 
     public init() {
         this._controls = {
-            password: new Input({
-                message: '8-40 length, at least one digit and one capital letter',
-                label: ui.user.passwordLabel,
-                type: 'password',
-                pattern: Regex.PASSWORD
+            title: new Input({
+                message: 'Not empty',
+                label: 'Название',
+                pattern: Regex.MESSAGE
             })
         };
         this.setProps({
@@ -37,5 +39,9 @@ export default class PasswordChange extends Form {
 
     public render() {
         return this.compile(templateFunction, {...this.props, arrow});
+    }
+
+    private _close() {
+        this.props.onClose();
     }
 }

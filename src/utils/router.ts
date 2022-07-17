@@ -8,6 +8,7 @@ export default class Router {
 
     public routes: Route[];
     public history: History;
+    public location: Location;
 
     constructor(rootQuery: string = '#app') {
         if (Router.__instance) {
@@ -16,6 +17,7 @@ export default class Router {
 
         this.routes = [];
         this.history = window.history;
+        this.location = window.location;
         this._currentRoute = null;
         this._rootQuery = rootQuery;
 
@@ -32,8 +34,7 @@ export default class Router {
 
     start() {
         window.onpopstate = (event: PopStateEvent) => {
-            const location = (event.currentTarget as Window).location;
-            this._onRoute(location.pathname, new URL(location.href).searchParams);
+            this._onRoute(location.pathname);
         };
 
         this._onRoute(window.location.pathname);
@@ -51,7 +52,7 @@ export default class Router {
         }
 
         this._currentRoute = route;
-        (route as Route).render(params);
+        (route as Route).render();
     }
 
     navigate(pathname: string, params?: URLSearchParams) {

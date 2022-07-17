@@ -32,9 +32,9 @@ export default class Route {
         return pathname === this._pathname;
     }
 
-    render(params?: URLSearchParams) {
+    render() {
         if (!this._block) {
-            this._block = new this._blockClass({params});
+            this._block = new this._blockClass();
             renderDom(this._props.rootQuery, this._block as Block);
             return;
         }

@@ -1,7 +1,6 @@
 import Block from '../../utils/block';
 import templateFunction from './user.hbs';
 import ui from '../../data/ui.json';
-import user from '../../data/user.json';
 import logo from '../../assets/img/logo-taper.svg';
 import UserEditForm from '../../components/user-edit/user-edit-form';
 import UserView from '../../components/user-view/user-view';
@@ -27,7 +26,6 @@ export default class UserPage extends Block {
 
         store.on(StoreEvent.Updated, () => {
             this.setProps(store.getState());
-            console.log(this.props);
         });
 
         this._onClick = this._onClick.bind(this);
@@ -50,14 +48,12 @@ export default class UserPage extends Block {
                 }),
                 view: new UserView({
                     ui,
-                    user,
                     events: {
                         click: (evt: PointerEvent) => this._onClick(evt),
                     }
                 }),
                 password: new ChangePassword({
                     ui,
-                    user,
                     events: {
                         submit: (evt: SubmitEvent) => this._onPasswordSubmit(evt)
                     }

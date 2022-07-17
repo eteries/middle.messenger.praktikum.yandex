@@ -3,10 +3,12 @@ import templateFunction from './sidebar.hbs';
 import styles from '../../styles/sidebar.css';
 import Input from '../input/input';
 import { Regex } from '../../constants';
-import { Contact } from '../../types/contact';
+import { ChatDTO } from '../../types/chat';
+import { Indexed } from '../../types/common';
 
 interface SidebarProps {
-    contacts: Contact[];
+    chats: ChatDTO[];
+    ui: Indexed
 }
 
 export default class Sidebar extends Block {
@@ -21,7 +23,6 @@ export default class Sidebar extends Block {
             search: new Input({
                 message: 'not empty',
                 label: '',
-                type: 'text',
                 pattern: Regex.MESSAGE
             })
         };
@@ -33,6 +34,7 @@ export default class Sidebar extends Block {
     }
 
     public render() {
+        console.log(this.props);
         return this.compile(templateFunction, {...this.props, styles});
     }
 }

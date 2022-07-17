@@ -1,4 +1,8 @@
 <div class="empty-chat">
   <p>{{message}}</p>
   <img src="{{chat}}" width="200" alt="">
+  <button class="button button--secondary-ghost" id="create">{{create}}</button>
+    {{#if isModalOpen}}
+        {{{children.create}}}
+    {{/if}}
 </div>

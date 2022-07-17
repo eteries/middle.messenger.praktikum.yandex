@@ -1,11 +1,11 @@
 <article class="chat-area">
   <header class="chat-area__header chat-header">
-    <a class="chat-header__plus" href="#" aria-label="{{ui.chat.add}}" title="{{ui.chat.add}}">
+    <button class="chat-header__plus" aria-label="{{ui.chat.add}}" title="{{ui.chat.add}}" id="add">
       {{{plus}}}
-    </a>
-    <a class="chat-header__delete" href="#" aria-label="{{ui.chat.delete}}" title="{{ui.chat.delete}}">
-      {{{del}}}
-    </a>
+    </button>
+    <button class="chat-header__delete" aria-label="{{ui.chat.remove}}" title="{{ui.chat.remove}}" id="remove">
+      {{{trash}}}
+    </button>
   </header>
   <section class="chat-area__content">
     <div class="chat-container">
@@ -25,4 +25,6 @@
   <footer class="chat-area__footer">
    {{{children.form}}}
   </footer>
+
+  {{{children.add}}}
 </article>
