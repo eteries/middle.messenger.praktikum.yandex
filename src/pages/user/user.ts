@@ -6,20 +6,20 @@ import UserEditForm from '../../components/user-edit/user-edit-form';
 import UserView from '../../components/user-view/user-view';
 import left from '../../partials/inline-svg/arrow-left.hbs';
 import styles from './user.css';
-import AuthorizationService from '../../services/authorization-service';
+import AuthService from '../../services/auth-service';
 import Router from '../../utils/router';
 import { hasError } from '../../utils/network';
 import ChangePassword from '../../components/password-change/password-change';
 import store, { StoreEvent } from '../../store/store';
 
 export default class UserPage extends Block {
-    private readonly _authorizationService: AuthorizationService;
+    private readonly _authorizationService: AuthService;
     private readonly _router: Router;
 
     constructor() {
         super();
 
-        this._authorizationService = new AuthorizationService();
+        this._authorizationService = new AuthService();
         this._router = new Router();
 
         this._authorizationService.getCurrentUser();

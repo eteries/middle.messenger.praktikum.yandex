@@ -2,7 +2,7 @@ import HTTPTransport from '../utils/http';
 import { Account, AccountValue, UserDTO, UserValueDTO } from '../types/user';
 import { APIError } from '../types/error';
 
-export default class AuthorizationApiService {
+export default class AuthApiService {
     private _http: HTTPTransport = new HTTPTransport();
     private _url: string = 'https://ya-praktikum.tech/api/v2';
 

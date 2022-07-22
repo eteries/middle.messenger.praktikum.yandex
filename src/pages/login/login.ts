@@ -4,17 +4,17 @@ import ui from '../../data/ui.json';
 import styles from '../../styles/login.css';
 import logo from '../../assets/img/logo-taper.svg';
 import LoginForm from '../../components/login-form/login-form';
-import AuthorizationService from '../../services/authorization-service';
+import AuthService from '../../services/auth-service';
 import Router from '../../utils/router';
 import { hasError } from '../../utils/network';
 
 export default class LoginPage extends Block {
-    private readonly _authorizationService: AuthorizationService;
+    private readonly _authorizationService: AuthService;
     private readonly _router: Router;
 
     constructor() {
         super();
-        this._authorizationService = new AuthorizationService();
+        this._authorizationService = new AuthService();
         this._router = new Router();
 
         this._onSubmit = this._onSubmit.bind(this);

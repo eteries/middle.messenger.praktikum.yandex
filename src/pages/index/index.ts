@@ -1,35 +1,30 @@
 import Block from '../../utils/block';
 import templateFunction from './index.hbs';
-import AuthorizationService from '../../services/authorization-service';
+import AuthService from '../../services/auth-service';
 import Router from '../../utils/router';
-import { hasError } from '../../utils/network';
+import store, { StoreEvent } from '../../store/store';
 
 export default class Index extends Block {
-    _auth: AuthorizationService;
+    _authService: AuthService;
     _router: Router;
 
     constructor() {
         super();
 
-        this._auth = new AuthorizationService();
+        this._authService = new AuthService();
         this._router = new Router("#app");
 
-        this._auth.getCurrentUser()
-            .then(
-                (response) => {
-                    console.log(response);
-                    if (hasError(response)) {
-                        this._router.navigate('/signup.html');
-                    } else {
-                        this._router.navigate('/chat.html');
-                    }
-                }
-            )
-            .catch(
-                () => {
-                    this._router.navigate('/signup.html');
-                }
-            )
+        this._authService.getCurrentUser();
+
+        store.on(StoreEvent.Updated, () => {
+            const {user} = store.getState();
+            this.setProps({user});
+            if (user === null) {
+                this._router.navigate('/signup.html');
+            } else {
+                this._router.navigate('/chat.html');
+            }
+        });
     }
 
     public render() {

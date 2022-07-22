@@ -1,6 +1,6 @@
 import HTTPTransport from '../utils/http';
 import { APIError } from '../types/error';
-import { ChatDTO, ChatValueDTO } from '../types/chat';
+import { ChatDTO, ChatValueDTO, Connect } from '../types/chat';
 
 export default class ChatApiService {
     private _http: HTTPTransport = new HTTPTransport();
@@ -45,6 +45,14 @@ export default class ChatApiService {
             data: {
                 users: usersId,
                 chatId
+            }
+        });
+    }
+
+    public createToken(chatId: number) {
+        return this._http.post<Connect | APIError>(`${this._url}/chats/token/${chatId}`, {
+            headers: {
+                'content-type': 'application/json'
             }
         });
     }

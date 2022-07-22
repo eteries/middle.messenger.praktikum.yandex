@@ -2,11 +2,10 @@ import Block from '../../utils/block';
 import templateFunction from './message.hbs';
 import styles from './message.css';
 import check from '../../partials/inline-svg/double-check.hbs';
+import { ChatMessage } from '../../types/chat';
 
 interface MessageProps {
-    message: string;
-    time: string;
-    isMine: boolean;
+    message: ChatMessage;
 }
 
 export default class MessageComponent extends Block {
@@ -14,10 +13,12 @@ export default class MessageComponent extends Block {
 
     constructor(props: MessageProps) {
         super(props);
+
+        this.init();
     }
 
     public init() {
-        this._messageClass = this.props.isMine
+        this._messageClass = this.props.message.isMine
             ? 'chat-message'
             : 'chat-message chat-message--answer';
         this.setProps({

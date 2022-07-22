@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 100%;
     position: relative;
+    height: 100vh;
 
     &__header {
         flex: 0 0 60px;
@@ -12,7 +13,10 @@
     }
 
     &__content {
-        flex: 1 1 auto;
+        flex: 1 1 calc(100vh - 60px);
+        height: calc(100vh - 60px);
+        padding-bottom: 100px;
+        overflow: auto;
     }
 
     &__footer {

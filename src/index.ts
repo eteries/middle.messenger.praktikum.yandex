@@ -6,16 +6,20 @@ import UserPage from './pages/user/user';
 import Error404 from './pages/404/error-404';
 import Error500 from './pages/500/error-500';
 import Router from './utils/router';
+import AuthService from './services/auth-service';
 
 const router = new Router("#app");
+const authService = new AuthService();
 
 document.addEventListener('DOMContentLoaded', () => {
+    authService.getCurrentUser();
+
     router
         .use('/', IndexPage)
-        .use('/chat.html', ChatPage)
+        .use('/chat.html', ChatPage, true)
         .use('/login.html', LoginPage)
         .use('/signup.html', SignupPage)
-        .use('/user.html', UserPage)
+        .use('/user.html', UserPage, true)
         .use('/500.html', Error500)
         .use('**', Error404)
         .start();

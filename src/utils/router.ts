@@ -1,16 +1,18 @@
 import { BlockClass, Nullable } from '../types/common';
 import Route from './route';
+import AuthService, { AuthStatus } from '../services/auth-service';
 
 export default class Router {
     private static __instance: Router;
     private _currentRoute: Nullable<Route>;
     private readonly _rootQuery: string;
+    private readonly _authService: AuthService;
 
     public routes: Route[];
     public history: History;
     public location: Location;
 
-    constructor(rootQuery: string = '#app') {
+    public constructor(rootQuery: string = '#app') {
         if (Router.__instance) {
             return Router.__instance;
         }
@@ -20,19 +22,20 @@ export default class Router {
         this.location = window.location;
         this._currentRoute = null;
         this._rootQuery = rootQuery;
+        this._authService = new AuthService();
 
         Router.__instance = this;
     }
 
-    use(pathname: string, block: BlockClass) {
-        const route = new Route(pathname, block, {rootQuery: this._rootQuery});
+    public use(pathname: string, block: BlockClass, isPrivate: boolean = false) {
+        const route = new Route(pathname, block, {rootQuery: this._rootQuery}, isPrivate);
 
         this.routes.push(route);
 
         return this;
     }
 
-    start() {
+    public start() {
         window.onpopstate = (event: PopStateEvent) => {
             this._onRoute(location.pathname);
         };
@@ -40,10 +43,15 @@ export default class Router {
         this._onRoute(window.location.pathname);
     }
 
-    _onRoute(pathname: string, params?: URLSearchParams) {
+    private _onRoute(pathname: string) {
         const route = this.getRoute(pathname);
         if (!route) {
             this._onRoute('**');
+            return;
+        }
+
+        if (route.isPrivate && this._authService.hasAuth === AuthStatus.NO_AUTH) {
+            this._onRoute('/');
             return;
         }
 
@@ -55,20 +63,20 @@ export default class Router {
         (route as Route).render();
     }
 
-    navigate(pathname: string, params?: URLSearchParams) {
+    public navigate(pathname: string) {
         this.history.pushState({}, '', pathname);
-        this._onRoute(pathname, params);
+        this._onRoute(pathname);
     }
 
-    back() {
+    public back() {
         this.history.back();
     }
 
-    forward() {
+    public forward() {
         this.history.forward();
     }
 
-    getRoute(pathname: string): Nullable<Route> {
+    public getRoute(pathname: string): Nullable<Route> {
         return this.routes.find(route => route.match(pathname)) ?? null;
     }
 }

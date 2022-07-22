@@ -2,6 +2,7 @@ import { BlockEvent } from '../utils/events.enum';
 import Block from '../utils/block';
 import { MethodHTTP } from '../constants';
 import { StoreEvent } from '../store/store';
+import { SocketEvent } from '../services/chat-websocket-service';
 
 
 export type Indexed = {[key: string | symbol]: any};
@@ -18,7 +19,7 @@ export type EventsProp = {[key: string]: (event?: Event) => void};
 
 export type EventBusListener = (...arg: any) => void;
 
-export type EventBusListeners = {[key in (BlockEvent | StoreEvent)]?: EventBusListener[]};
+export type EventBusListeners = {[key in AppEvent]?: EventBusListener[]};
 
 export type RequestOptions = {
     headers?: Record<string, string>;
@@ -35,3 +36,5 @@ export type Nullable<T> = T | null;
 export type BlockClass = {
     new(props?: Indexed): Block;
 }
+
+export type AppEvent = BlockEvent | StoreEvent | SocketEvent;

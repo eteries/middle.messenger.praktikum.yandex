@@ -33,11 +33,27 @@ export default class ChatService {
             return;
         }
 
+        if (user.length === 0) {
+            new Notification('User is not found');
+            return;
+        }
+
         const result = await this._chatApiService.addUsers([user[0].id], chatId);
         if (!hasError(result)) {
             await this.getChats();
         } else {
             new Notification(result.reason);
+        }
+    }
+
+    public async createToken(chatId: number) {
+        console.log('Запрашиваю токен');
+        const response = await this._chatApiService.createToken(chatId);
+        if (!hasError(response)) {
+            console.log('Сохраняю токен', response.token);
+            store.set('token', response.token)
+        } else {
+            new Notification(response.reason);
         }
     }
 }

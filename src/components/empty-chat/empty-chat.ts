@@ -58,7 +58,7 @@ export default class EmptyChat extends Block {
 
     private _onSubmit(evt: SubmitEvent) {
         evt.preventDefault();
-        const form = this.props.children.add;
+        const form = this.props.children.create;
         if (form.isValid) {
             this._chatService.createChat(form.value);
             this._closeModal();
