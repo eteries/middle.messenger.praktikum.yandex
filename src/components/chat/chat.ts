@@ -52,27 +52,24 @@ export default class ChatComponent extends Block {
             if (Array.isArray(payload)) {
                 this._messages = [
                     ...this._messages,
-                    ...payload.map((message: ChatMessageDTO) => new MessageComponent({message: mapChatMessageDTOToChatMessage(message)}))
-            ];
-                //store.set(`chats.${this._chatId}`, payload);
-                this.setProps({
-                    children: {
-                        ...this.props.children,
-                        messages: this._messages
-                    }
-                })
+                    ...payload
+                        .map((message: ChatMessageDTO) => new MessageComponent({message: mapChatMessageDTOToChatMessage(message)}))
+                        .reverse()
+                ];
             } else if(payload?.type === 'message') {
                 this._messages = [
                     ...this._messages,
                     new MessageComponent({message: mapChatMessageDTOToChatMessage(payload)})
                 ];
-                this.setProps({
-                    children: {
-                        ...this.props.children,
-                        messages: this._messages
-                    }
-                })
+
             }
+
+            this.setProps({
+                children: {
+                    ...this.props.children,
+                    messages: this._messages
+                }
+            })
         })
     }
 

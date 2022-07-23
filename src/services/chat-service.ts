@@ -1,7 +1,7 @@
 import ChatApiService from './chat-api-service';
 import store from '../store/store';
 import { hasError } from '../utils/network';
-import { ChatValueDTO } from '../types/chat';
+import { ChatValueDTO, mapChatDTOToChat } from '../types/chat';
 import Notification from '../utils/notification';
 import UserService from './user-service';
 
@@ -11,7 +11,11 @@ export default class ChatService {
 
     public async getChats() {
         const result = await this._chatApiService.getChats();
-        store.set('chats', result)
+        if (hasError(result)) {
+            new Notification(result.reason)
+        } else {
+            store.set('chats', result.map(mapChatDTOToChat));
+        }
     }
 
     public async getChat(id: number) {

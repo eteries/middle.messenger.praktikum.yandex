@@ -6,7 +6,12 @@
 {{else}}
   <div class="input">
     <label class="label" for="input-{{id}}">{{label}}</label>
-    <input class="control" type="{{type}}" id="input-{{id}}"/>
+    <input class="control"
+           type="{{type}}"
+           id="input-{{id}}"
+           {{#if name}}name="{{name}}"{{/if}}
+           {{#if accept}}accept="{{accept}}"{{/if}}
+    />
     <p class="message">{{message}}</p>
   </div>
 {{/if}}

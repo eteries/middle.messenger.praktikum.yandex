@@ -24,7 +24,7 @@ export default class AddUser extends Form {
             login: new Input({
                 message: 'Not empty',
                 label: 'User\'s login',
-                pattern: Regex.MESSAGE
+                pattern: Regex.NOT_EMPTY
             })
         };
         this.setProps({

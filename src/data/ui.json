@@ -19,6 +19,8 @@
     "lastNameLabel": "Last name",
     "phoneLabel": "Phone",
     "passwordLabel": "Password",
+    "oldPassLabel": "Old password",
+    "newPassLabel": "New password",
     "signupButton": "Signup",
     "signupLink": "Signup",
     "loginButton": "Login",

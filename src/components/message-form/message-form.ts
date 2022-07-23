@@ -24,7 +24,7 @@ export default class MessageForm extends Form {
                 message: 'Message can\'t be empty',
                 label: '',
                 type: 'textarea',
-                pattern: Regex.MESSAGE
+                pattern: Regex.NOT_EMPTY
             })
         };
         this.setProps({

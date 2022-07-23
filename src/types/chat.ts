@@ -1,6 +1,7 @@
 import { UserValueDTO } from './user';
 import { Nullable } from './common';
 import store from '../store/store';
+import { formatLastMessageDate } from '../utils/date';
 
 export interface Chat {
     date: string;
@@ -59,6 +60,21 @@ export interface ChatDTO {
         content: string
     }
 }
+
+export const mapChatDTOToChat = (dto: ChatDTO) => ({
+    ...dto,
+    unreadCount: dto.unread_count,
+    lastMessage: {
+        ...dto.last_message,
+        time: formatLastMessageDate(dto.last_message.time),
+        user: {
+            ...dto.last_message.user,
+            firstName: dto.last_message.user.first_name,
+            lastName: dto.last_message.user.second_name,
+        }
+    }
+})
+
 
 export interface ChatValueDTO {
     title: string;

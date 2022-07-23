@@ -1,4 +1,4 @@
-import templateFunction from './create-chat.hbs';
+import templateFunction from './upload-avatar.hbs';
 import Input from '../input/input';
 import { Regex } from '../../constants';
 import { Indexed } from '../../types/common';
@@ -7,27 +7,27 @@ import arrow from '../../partials/inline-svg/arrow-right.hbs';
 
 interface FormProps {
     ui: Indexed,
-    onClose: () => void,
     events: {
-        submit: (evt: SubmitEvent) => void
+        submit: (evt: SubmitEvent) => void,
+        click: (evt: PointerEvent) => void,
     };
     children?: Indexed;
 }
 
-export default class CreateChat extends Form {
+export default class UploadAvatar extends Form {
     constructor(props: FormProps) {
         super(props);
-
-        (this.element?.querySelector('button') as HTMLButtonElement)
-            .addEventListener('click', () => this._close())
     }
 
     public init() {
         this._controls = {
-            title: new Input({
+            avatar: new Input({
                 message: 'Not empty',
-                label: 'Название',
-                pattern: Regex.NOT_EMPTY
+                type: 'file',
+                label: 'Avatar',
+                name: 'avatar',
+                pattern: Regex.NOT_EMPTY,
+                accept: "image/*"
             })
         };
         this.setProps({
@@ -39,9 +39,5 @@ export default class CreateChat extends Form {
 
     public render() {
         return this.compile(templateFunction, {...this.props, arrow});
-    }
-
-    private _close() {
-        this.props.onClose();
     }
 }

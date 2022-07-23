@@ -9,7 +9,8 @@ import ui from '../../data/ui.json';
 interface FormProps {
     ui: Indexed,
     events: {
-        submit: (evt: SubmitEvent) => void
+        submit: (evt: SubmitEvent) => void,
+        click: (evt: PointerEvent) => void,
     };
     children?: Indexed;
 }
@@ -21,9 +22,15 @@ export default class PasswordChange extends Form {
 
     public init() {
         this._controls = {
-            password: new Input({
+            oldPass: new Input({
                 message: '8-40 length, at least one digit and one capital letter',
-                label: ui.user.passwordLabel,
+                label: ui.user.oldPassLabel,
+                type: 'password',
+                pattern: Regex.PASSWORD
+            }),
+            newPass: new Input({
+                message: '8-40 length, at least one digit and one capital letter',
+                label: ui.user.newPassLabel,
                 type: 'password',
                 pattern: Regex.PASSWORD
             })

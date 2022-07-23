@@ -10,7 +10,11 @@
       </h1>
     </header>
     <div class="form-row">
-      <div class="avatar user-view__avatar"></div>
+      <div class="avatar user-view__avatar">
+          {{#if user.avatar}}
+              <img src="https://ya-praktikum.tech/api/v2/resources/{{user.avatar}}" alt="user" width="150" height="150">
+          {{/if}}
+      </div>
     </div>
     <div class="form-row form-row--wide">
       <span class="name">{{ui.user.emailLabel}}</span>
@@ -35,14 +39,15 @@
 
     <footer class="user__actions actions">
       <div class="actions__item">
-        <button class="button button--primary" type="button" id="edit">{{ui.edit}}</button>
+        <button class="button button--primary edit" type="button">{{ui.edit}}</button>
       </div>
       <div class="actions__item">
-        <button class="button button--secondary" id="password">{{ui.changePassword}}</button>
+        <button class="button button--secondary password">{{ui.changePassword}}</button>
       </div>
       <div class="actions__item">
-        <button class="button button--danger-ghost" id="logout">{{ui.logout}}</button>
+        <button class="button button--danger-ghost logout">{{ui.logout}}</button>
       </div>
     </footer>
   </div>
+  {{{children.password}}}
 </article>

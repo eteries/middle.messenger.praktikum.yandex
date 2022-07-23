@@ -8,6 +8,8 @@ interface InputProps {
     type?: string;
     message: string;
     pattern: RegExp;
+    accept?: string;
+    name?: string;
 
 }
 

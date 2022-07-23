@@ -42,7 +42,7 @@ export default class UserPage extends Block {
                 form: new UserEditForm({
                     ui,
                     events: {
-                        submit: (evt: SubmitEvent) => this._onSubmit(evt),
+                        submit: (evt: SubmitEvent) => this._onUserSubmit(evt),
                         click: (evt: PointerEvent) => this._onClick(evt)
                     }
                 }),
@@ -73,7 +73,7 @@ export default class UserPage extends Block {
         }
     }
 
-    private _onSubmit(evt: SubmitEvent) {
+    private _onUserSubmit(evt: SubmitEvent) {
         evt.preventDefault();
         const form = this.props.children.form;
         if (form.isValid) {

@@ -24,7 +24,9 @@
     &__actions {
         margin-top: 20px;
     }
+}
 
+.avatar-form {
     &__avatar {
         margin: 20px auto 40px;
     }

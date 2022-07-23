@@ -14,4 +14,22 @@ export default class UserApiService {
             data: login
         });
     }
+
+    public uploadAvatar(avatar: FormData) {
+        return this._http.put<UserDTO | APIError>(`${this._url}/user/profile/avatar`, {
+            data: avatar
+        });
+    }
+
+    public updatePassword(oldPassword: string, newPassword: string) {
+        return this._http.put<undefined | APIError>(`${this._url}/user/password`, {
+            headers: {
+                'content-type': 'application/json'
+            },
+            data: {
+                oldPassword,
+                newPassword
+            }
+        });
+    }
 }

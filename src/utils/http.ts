@@ -66,8 +66,10 @@ export default class HTTPTransport {
 
             if (isGet || !data) {
                 xhr.send();
+            } else if(options?.headers && options.headers['content-type'] === 'application/json') {
+                xhr.send(JSON.stringify(data))
             } else {
-                xhr.send(JSON.stringify(data));
+                xhr.send(data);
             }
         });
     };

@@ -8,12 +8,16 @@
   <ul class="chat-list">
     {{#each chats}}
       <a class="contact" href="chat.html?id={{this.id}}">
-        <div class="contact__avatar">{{this.avatar}}</div>
+        <div class="contact__avatar">
+            {{#if this.lastMessage.user.avatar}}
+                <img src="{{../API_UPLOAD_PATH}}{{this.lastMessage.user.avatar}}" alt="{{this.lastMessage.user.firstName}}">
+            {{/if}}
+        </div>
         <div class="contact__name">{{this.title}}</div>
-        <div class="contact__day">{{this.day}}</div>
-        <div class="contact__content">{{this.content}}</div>
-          {{#if this.num}}
-            <div class="contact__num">{{this.unread_count}}</div>
+        <div class="contact__day">{{this.lastMessage.time}}</div>
+        <div class="contact__content">{{this.lastMessage.user.firstName}}: {{this.lastMessage.content}}</div>
+          {{#if this.unreadCount}}
+            <div class="contact__num">{{this.unreadCount}}</div>
           {{/if}}
 
       </a>
