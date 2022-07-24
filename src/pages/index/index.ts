@@ -19,6 +19,7 @@ export default class Index extends Block {
         store.on(StoreEvent.Updated, () => {
             const {user} = store.getState();
             this.setProps({user});
+            debugger
             if (user === null) {
                 this._router.navigate('/signup.html');
             } else {
