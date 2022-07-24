@@ -23,6 +23,4 @@ document.addEventListener('DOMContentLoaded', () => {
         .use('/500.html', Error500)
         .use('**', Error404)
         .start();
-})
-
-
+});

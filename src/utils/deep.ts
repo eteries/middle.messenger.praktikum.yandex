@@ -34,7 +34,7 @@ export function isEqual(lhs: object, rhs: object): boolean {
 
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
     for (const p in rhs) {
-        if (!Object.prototype.hasOwnProperty.call(rhs, 'p')) {
+        if (!Object.prototype.hasOwnProperty.call(rhs, p)) {
             continue;
         }
         try {

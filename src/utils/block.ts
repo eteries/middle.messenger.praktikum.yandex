@@ -89,14 +89,9 @@ export default class Block {
             this._children = this._mapChildrenToStabs(context.children);
             context.children = this._children.reduce((acc: Indexed, {key, block, stab}): Indexed => {
                 if (Array.isArray(block)) {
+                    acc[key] = [];
                     block.forEach((item) => {
-                        acc = {
-                            ...acc,
-                            [key]: {
-                                ...acc[key],
-                                [item.key]: item.stab
-                            }
-                        }
+                        acc[key].push(item.stab);
                     });
                 }
                 else {
