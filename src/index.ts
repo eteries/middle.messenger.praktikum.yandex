@@ -10,6 +10,9 @@ import AuthService from './services/auth-service';
 
 const router = new Router("#app");
 const authService = new AuthService();
+const global = (function() {
+    return this;
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
     authService.getCurrentUser();
