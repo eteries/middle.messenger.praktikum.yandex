@@ -29,6 +29,7 @@ export default class UserService {
             new Notification(response.reason);
         } else {
             new Notification('The password has been updated. Use it to log in');
+            store.set('user', null);
             this._authService.logout();
         }
     }

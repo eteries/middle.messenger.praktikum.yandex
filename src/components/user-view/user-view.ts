@@ -39,16 +39,12 @@ export default class UserView extends Block {
             },
             children: {
                 password: new Modal({
-                    ui,
-                    events: {
-                        click: (evt: PointerEvent) => this._onCloseClick(evt)
-                    },
+                    title: 'Change the password',
                     children: {
                         content: new PasswordChange({
                             ui,
                             events: {
-                                submit: (evt: SubmitEvent) => this._onPasswordSubmit(evt),
-                                click: (evt: PointerEvent) => this._onCloseClick(evt)
+                                submit: (evt: SubmitEvent) => this._onPasswordSubmit(evt)
                             }
                         })
                     }
@@ -57,29 +53,21 @@ export default class UserView extends Block {
         });
     }
 
-    private _onPasswordClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.password') as HTMLElement;
-        if (evt.composedPath().includes(target)) {
-            this.props.children.password.show();
-        }
-    }
-
-    private _onCloseClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.close') as HTMLElement;
-        if (evt.composedPath().includes(target)) {
-            this.props.children.password.hide();
-        }
-    }
-
     private _onPasswordSubmit(evt: SubmitEvent) {
         evt.preventDefault();
         const passwordModal = this.props.children.password;
         const form = passwordModal.props.children.content;
 
         if (form.isValid) {
-            console.log(form);
             this._userService.updatePassword(form.value.oldPass, form.value.newPass);
             this.props.children.password.hide();
+        }
+    }
+
+    private _onPasswordClick(evt: PointerEvent) {
+        const target = this.element?.querySelector('.password') as HTMLElement;
+        if (evt.composedPath().includes(target)) {
+            this.props.children.password.show();
         }
     }
 

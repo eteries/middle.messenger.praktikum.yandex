@@ -12,7 +12,7 @@ export default class Router {
     public history: History;
     public location: Location;
 
-    public constructor(rootQuery: string = '#app') {
+    public constructor(rootQuery = '#app') {
         if (Router.__instance) {
             return Router.__instance;
         }
@@ -27,7 +27,7 @@ export default class Router {
         Router.__instance = this;
     }
 
-    public use(pathname: string, block: BlockClass, isPrivate: boolean = false) {
+    public use(pathname: string, block: BlockClass, isPrivate = false) {
         const route = new Route(pathname, block, {rootQuery: this._rootQuery}, isPrivate);
 
         this.routes.push(route);

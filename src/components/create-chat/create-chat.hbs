@@ -1,11 +1,4 @@
-<section class="modal">
-    <div class="modal__dialog">
-        <button>{{ui.close}}</button>
-        <h2 class="modal__title">Создать чат</h2>
-        <form class="modal__body" action="/" method="post">
-            <p>Введите имя:</p>
-            {{{children.title}}}
-            <button class="button button--accent" type="submit">Сохранить</button>
-        </form>
-    </div>
-</section>
+<form class="modal__body" action="/" method="post">
+    {{{children.title}}}
+    <button class="button button--accent" type="submit">{{ui.save}}</button>
+</form>

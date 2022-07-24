@@ -9,7 +9,6 @@ import styles from './user.css';
 import AuthService from '../../services/auth-service';
 import Router from '../../utils/router';
 import { hasError } from '../../utils/network';
-import ChangePassword from '../../components/password-change/password-change';
 import store, { StoreEvent } from '../../store/store';
 
 export default class UserPage extends Block {
@@ -27,36 +26,29 @@ export default class UserPage extends Block {
         store.on(StoreEvent.Updated, () => {
             this.setProps(store.getState());
         });
-
-        this._onClick = this._onClick.bind(this);
     }
 
     public init() {
         this.setProps({
             isEdit: false,
-            isPasswordModalOpen: false,
             logo,
             left,
             styles,
+            events: {
+                click: (evt: PointerEvent) => {
+                    this._onEditClick(evt);
+                    this._onLogoutClick(evt);
+                }
+            },
             children: {
                 form: new UserEditForm({
                     ui,
                     events: {
-                        submit: (evt: SubmitEvent) => this._onUserSubmit(evt),
-                        click: (evt: PointerEvent) => this._onClick(evt)
+                        submit: (evt: SubmitEvent) => this._onUserSubmit(evt)
                     }
                 }),
                 view: new UserView({
-                    ui,
-                    events: {
-                        click: (evt: PointerEvent) => this._onClick(evt),
-                    }
-                }),
-                password: new ChangePassword({
-                    ui,
-                    events: {
-                        submit: (evt: SubmitEvent) => this._onPasswordSubmit(evt)
-                    }
+                    ui
                 })
             }
         });
@@ -81,25 +73,17 @@ export default class UserPage extends Block {
         }
     }
 
-    private _onPasswordSubmit(evt: SubmitEvent) {
-        evt.preventDefault();
-        const form = this.props.children.password;
-        if (form.isValid) {
-            console.log(form.value);
+    private _onEditClick(evt: PointerEvent) {
+        const target = this.element?.querySelector('.edit') as HTMLElement;
+        if (evt.composedPath().includes(target)) {
+            this.setProps({isEdit: true});
         }
     }
 
-    private _onClick(evt: PointerEvent) {
-        const targetId = (evt.target as HTMLElement).id;
-        switch (targetId) {
-            case 'edit':
-                this.setProps({isEdit: true});
-                break;
-            case 'password':
-                this.setProps({isPasswordModalOpen: true});
-                break;
-            case 'logout':
-                this._logout();
+    private _onLogoutClick(evt: PointerEvent) {
+        const target = this.element?.querySelector('.logout') as HTMLElement;
+        if (evt.composedPath().includes(target)) {
+            this._logout();
         }
     }
 }

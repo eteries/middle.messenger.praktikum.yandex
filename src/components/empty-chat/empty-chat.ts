@@ -6,6 +6,7 @@ import styles from '../../pages/chat/chat.css';
 import ui from '../../data/ui.json';
 import CreateChat from '../create-chat/create-chat';
 import ChatService from '../../services/chat-service';
+import Modal from '../modal/modal';
 
 interface EmptyChatProps {
     message: string;
@@ -19,24 +20,27 @@ export default class EmptyChat extends Block {
         super(props);
         this._chatService = new ChatService();
 
-        this._closeModal = this._closeModal.bind(this);
+        this._onSubmit = this._onSubmit.bind(this);
     }
 
     public init() {
         this.setProps({
-            isModalOpen: false,
             logo,
             styles,
             events: {
-                click: (evt: PointerEvent) => this._openModal(evt)
+                click: (evt: PointerEvent) => this._onCreateClick(evt)
             },
             children: {
-                create: new CreateChat({
-                    onClose: () => this._closeModal(),
-                    events: {
-                        submit: (evt: SubmitEvent) => this._onSubmit(evt)
-                    },
-                    ui
+                create: new Modal({
+                    title: 'Create a new chat',
+                    children: {
+                        content: new CreateChat({
+                            events: {
+                                submit: (evt: SubmitEvent) => this._onSubmit(evt)
+                            },
+                            ui
+                        })
+                    }
                 })
             }
         });
@@ -46,22 +50,21 @@ export default class EmptyChat extends Block {
         return this.compile(templateFunction, {...this.props, chat});
     }
 
-    private _closeModal() {
-        this.props.isModalOpen = false;
-    }
+    private _onSubmit(evt: SubmitEvent) {
+        evt.preventDefault();
+        const modal = this.props.children.create;
+        const form = modal.props.children.content;
 
-    private _openModal(evt: PointerEvent) {
-        if ((evt.target as HTMLElement).id === 'create') {
-            this.props.isModalOpen = true;
+        if (form.isValid) {
+            this._chatService.createChat(form.value);
+            this.props.children.create.hide();
         }
     }
 
-    private _onSubmit(evt: SubmitEvent) {
-        evt.preventDefault();
-        const form = this.props.children.create;
-        if (form.isValid) {
-            this._chatService.createChat(form.value);
-            this._closeModal();
+    private _onCreateClick(evt: PointerEvent) {
+        const target = this.element?.querySelector('.create') as HTMLElement;
+        if (evt.composedPath().includes(target)) {
+            this.props.children.create.show();
         }
     }
 }

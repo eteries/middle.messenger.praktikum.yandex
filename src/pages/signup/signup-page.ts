@@ -44,9 +44,8 @@ export default class SignupPage extends Block {
         const form = this.props.children.form;
         if (form.isValid) {
             const result = await this._authService.createUser(form.value);
-            console.log(result);
             if (!hasError(result)) {
-                this._router.navigate('/login.html')
+                this._router.navigate('/chat.html')
             }
         }
     }

@@ -14,9 +14,6 @@ export default class WebSocketService extends EventBus {
 
         this._socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
-
-        console.log('SocketService::Constructor:AfterSocket', this._socket);
-
         this._setListeners();
 
     }
@@ -30,7 +27,7 @@ export default class WebSocketService extends EventBus {
     }
 
 
-    public getMessages(offset: number = 0) {
+    public getMessages(offset = 0) {
         console.log('SocketService::getMessages');
         this._socket.send(JSON.stringify({
             type: "get old",

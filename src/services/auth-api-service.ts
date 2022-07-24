@@ -4,7 +4,7 @@ import { APIError } from '../types/error';
 
 export default class AuthApiService {
     private _http: HTTPTransport = new HTTPTransport();
-    private _url: string = 'https://ya-praktikum.tech/api/v2';
+    private _url = 'https://ya-praktikum.tech/api/v2';
 
     public createUser(user: UserValueDTO) {
         return this._http.post<Account>(`${this._url}/auth/signup`, {

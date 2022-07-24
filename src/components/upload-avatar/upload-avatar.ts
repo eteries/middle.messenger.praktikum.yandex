@@ -8,8 +8,7 @@ import arrow from '../../partials/inline-svg/arrow-right.hbs';
 interface FormProps {
     ui: Indexed,
     events: {
-        submit: (evt: SubmitEvent) => void,
-        click: (evt: PointerEvent) => void,
+        submit: (evt: SubmitEvent) => void
     };
     children?: Indexed;
 }

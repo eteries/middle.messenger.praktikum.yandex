@@ -14,7 +14,7 @@ interface FormProps {
     ui: any;
     events: {
         submit: (evt: SubmitEvent) => void,
-        click: (evt: PointerEvent) => void
+        click?: (evt: PointerEvent) => void
     };
     children?: Indexed;
 }
@@ -35,7 +35,6 @@ export default class UserEditForm extends Form {
         });
 
         this._onAvatarSubmit = this._onAvatarSubmit.bind(this);
-        this._onCloseClick = this._onCloseClick.bind(this);
         this._onAvatarClick = this._onAvatarClick.bind(this);
     }
 
@@ -79,16 +78,12 @@ export default class UserEditForm extends Form {
                 ...this._controls,
                 avatar: new Modal({
                     ui,
-                    events: {
-                        click: (evt: PointerEvent) => this._onCloseClick(evt)
-                    },
+                    title: 'Upload an avatar',
                     children: {
                         content: new UploadAvatar({
                             ui,
                             events: {
-                                submit: (evt: SubmitEvent) => this._onAvatarSubmit(evt),
-                                click: (evt: PointerEvent) => this._onCloseClick(evt)
-
+                                submit: (evt: SubmitEvent) => this._onAvatarSubmit(evt)
                             }
                         })
                     }
@@ -99,13 +94,6 @@ export default class UserEditForm extends Form {
 
     public render() {
         return this.compile(templateFunction, {...this.props});
-    }
-
-    private _onCloseClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.close') as HTMLElement;
-        if (evt.composedPath().includes(target)) {
-            this.props.children.avatar.hide();
-        }
     }
 
     private _onAvatarSubmit(evt: SubmitEvent) {

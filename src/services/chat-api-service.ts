@@ -4,9 +4,9 @@ import { ChatDTO, ChatValueDTO, Connect } from '../types/chat';
 
 export default class ChatApiService {
     private _http: HTTPTransport = new HTTPTransport();
-    private _url: string = 'https://ya-praktikum.tech/api/v2';
+    private _url = 'https://ya-praktikum.tech/api/v2';
 
-    public getChats(offset: number = 0, limit: number = 20, title: string = '') {
+    public getChats(offset = 0, limit = 20, title = '') {
         return this._http.get<ChatDTO[] | APIError>(`${this._url}/chats`, {
             data: {offset, limit, title}
         });

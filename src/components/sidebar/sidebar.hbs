@@ -14,8 +14,12 @@
             {{/if}}
         </div>
         <div class="contact__name">{{this.title}}</div>
-        <div class="contact__day">{{this.lastMessage.time}}</div>
-        <div class="contact__content">{{this.lastMessage.user.firstName}}: {{this.lastMessage.content}}</div>
+        {{#if this.lastMessage}}
+            <div class="contact__day">{{this.lastMessage.time}}</div>
+            <div class="contact__content">{{this.lastMessage.user.firstName}}: {{this.lastMessage.content}}</div>
+        {{else}}
+            <div class="contact__content">Waiting for a first message</div>
+        {{/if}}
           {{#if this.unreadCount}}
             <div class="contact__num">{{this.unreadCount}}</div>
           {{/if}}

@@ -45,7 +45,6 @@ export default class LoginPage extends Block {
         const form = this.props.children.form;
         if (form.isValid) {
             const result = await this._authorizationService.login(form.value);
-            console.log(form.value);
             if (!hasError(result)) {
                 this._router.navigate('/chat.html')
             }

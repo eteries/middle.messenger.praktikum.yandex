@@ -3,13 +3,11 @@ import Input from '../input/input';
 import { Regex } from '../../constants';
 import { Indexed } from '../../types/common';
 import Form from '../../utils/form';
-import arrow from '../../partials/inline-svg/arrow-right.hbs';
 
 interface FormProps {
     ui: Indexed,
     events: {
-        submit: (evt: SubmitEvent) => void,
-        click: (evt: PointerEvent) => void,
+        submit: (evt: SubmitEvent) => void
     };
     children?: Indexed;
 }
@@ -35,6 +33,6 @@ export default class AddUser extends Form {
     }
 
     public render() {
-        return this.compile(templateFunction, {...this.props, arrow});
+        return this.compile(templateFunction, {...this.props});
     }
 }

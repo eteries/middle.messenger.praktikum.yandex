@@ -1,4 +1,4 @@
-import templateFunction from './create-chat.hbs';
+import templateFunction from './remove-user.hbs';
 import Input from '../input/input';
 import { Regex } from '../../constants';
 import { Indexed } from '../../types/common';
@@ -12,16 +12,16 @@ interface FormProps {
     children?: Indexed;
 }
 
-export default class CreateChat extends Form {
+export default class RemoveUser extends Form {
     constructor(props: FormProps) {
         super(props);
     }
 
     public init() {
         this._controls = {
-            title: new Input({
+            login: new Input({
                 message: 'Not empty',
-                label: 'Название',
+                label: 'User\'s login',
                 pattern: Regex.NOT_EMPTY
             })
         };

@@ -13,6 +13,7 @@ import ChatService from '../../services/chat-service';
 import SocketService, { SocketEvent } from '../../services/chat-websocket-service';
 import store from '../../store/store';
 import { UserDTO } from '../../types/user';
+import RemoveUser from '../remove-user/remove-user';
 
 interface ChatProps {
     ui: any;
@@ -45,7 +46,8 @@ export default class ChatComponent extends Block {
         }
 
         this._onMessageSubmit = this._onMessageSubmit.bind(this);
-        this._onUserSubmit = this._onUserSubmit.bind(this);
+        this._onUserAddSubmit = this._onUserAddSubmit.bind(this);
+        this._onUserRemoveSubmit = this._onUserRemoveSubmit.bind(this);
         this._onCloseClick = this._onCloseClick.bind(this);
 
         this._socketService.on(SocketEvent.Message, (payload) => {
@@ -83,15 +85,25 @@ export default class ChatComponent extends Block {
                 }),
                 add: new Modal({
                     ui,
-                    events: {
-                        click: (evt: PointerEvent) => this._onCloseClick(evt)
-                    },
+                    title: 'Add a new user to the chat',
                     children: {
                         content: new AddUser({
                             ui,
                             events: {
-                                submit: (evt: SubmitEvent) => this._onUserSubmit(evt),
-                                click: (evt: PointerEvent) => this._onCloseClick(evt)
+                                submit: (evt: SubmitEvent) => this._onUserAddSubmit(evt)
+
+                            }
+                        })
+                    }
+                }),
+                remove: new Modal({
+                    ui,
+                    title: 'Remove a new user from the chat',
+                    children: {
+                        content: new RemoveUser({
+                            ui,
+                            events: {
+                                submit: (evt: SubmitEvent) => this._onUserRemoveSubmit(evt)
 
                             }
                         })
@@ -109,17 +121,25 @@ export default class ChatComponent extends Block {
         evt.preventDefault();
         const form = this.props.children.form;
         if (form.isValid) {
-            console.log(form.value);
             this._socketService.send(form.value.message);
         }
     }
 
-    private _onUserSubmit(evt: SubmitEvent) {
+    private _onUserAddSubmit(evt: SubmitEvent) {
         evt.preventDefault();
-        const form = this.props.children.content;
+        const modal = this.props.children.add;
+        const form = modal.props.children.content;
         if (form.isValid) {
-            console.log(form.value);
             this._chatService.addUser(form.value, this.props.id);
+        }
+    }
+
+    private _onUserRemoveSubmit(evt: SubmitEvent) {
+        evt.preventDefault();
+        const modal = this.props.children.remove;
+        const form = modal.props.children.content;
+        if (form.isValid) {
+            this._chatService.removeUser(form.value, this.props.id);
         }
     }
 
@@ -136,7 +156,6 @@ export default class ChatComponent extends Block {
         }
 
         this._socketService.on(SocketEvent.Open, () => {
-            console.log('Chat comp::_joinChat::storeOnOpen')
             this._socketService.getMessages();
         });
 

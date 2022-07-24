@@ -1,5 +1,5 @@
 import { UserValueDTO } from './user';
-import { Nullable } from './common';
+import { Indexed, Nullable } from './common';
 import store from '../store/store';
 import { formatLastMessageDate } from '../utils/date';
 
@@ -61,19 +61,26 @@ export interface ChatDTO {
     }
 }
 
-export const mapChatDTOToChat = (dto: ChatDTO) => ({
-    ...dto,
-    unreadCount: dto.unread_count,
-    lastMessage: {
+export const mapChatDTOToChat = (dto: ChatDTO) => {
+    const chat: Indexed =  {
+        ...dto,
+        unreadCount: dto.unread_count
+    };
+
+    if (dto.last_message) {
+        chat.lastMessage = {
         ...dto.last_message,
-        time: formatLastMessageDate(dto.last_message.time),
-        user: {
-            ...dto.last_message.user,
-            firstName: dto.last_message.user.first_name,
-            lastName: dto.last_message.user.second_name,
+                time: formatLastMessageDate(dto.last_message?.time),
+                user: {
+            ...dto.last_message?.user,
+                    firstName: dto.last_message?.user?.first_name,
+                    lastName: dto.last_message?.user?.second_name,
+            }
         }
     }
-})
+
+    return chat;
+}
 
 
 export interface ChatValueDTO {

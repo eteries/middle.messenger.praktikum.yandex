@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node server.js",
     "stylelint": "stylelint src/**/*.css",
-    "eslint": "eslint ./src/"
+    "eslint": "eslint ./src/",
+    "eslint-fix": "eslint ./src/ --fix"
   },
   "repository": {
     "type": "git",

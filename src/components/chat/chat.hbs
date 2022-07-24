@@ -10,9 +10,6 @@
   <section class="chat-area__content">
     <div class="chat-container">
       <div class="chat">
-        <div class="chat-date">
-          <span>{{chat.date}}</span>
-        </div>
         {{#each children.messages }}
           <div class="chat__message">
               {{{this}}}
@@ -26,4 +23,5 @@
   </footer>
 
   {{{children.add}}}
+  {{{children.remove}}}
 </article>
