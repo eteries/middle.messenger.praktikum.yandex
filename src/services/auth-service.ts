@@ -4,17 +4,17 @@ import store from '../store/store';
 import { hasError } from '../utils/network';
 
 export enum AuthStatus {
-    'UNKNOWN',
-    'NO_AUTH',
-    'AUTH'
+    'UNKNOWN' = 'unknown',
+    'NO_AUTH' = 'no_auth',
+    'AUTH' = 'auth'
 }
 
 export default class AuthService {
     private readonly _authorizationApiService = new AuthApiService();
-    public hasAuth: AuthStatus;
+    public authStatus: AuthStatus;
 
     constructor() {
-        this.hasAuth = AuthStatus.UNKNOWN;
+        this.authStatus = AuthStatus.UNKNOWN;
     }
 
     public createUser(user: UserValueDTO) {
@@ -36,10 +36,10 @@ export default class AuthService {
         if (hasError(response)) {
             new Notification(response.reason);
             store.set('user', null);
-            this.hasAuth = AuthStatus.NO_AUTH;
+            this.authStatus = AuthStatus.NO_AUTH;
         } else {
             store.set('user', response);
-            this.hasAuth = AuthStatus.AUTH;
+            this.authStatus = AuthStatus.AUTH;
         }
     }
 }
