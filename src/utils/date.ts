@@ -5,5 +5,5 @@ export const formatChatMessageDate = (ISODate: string) => {
 
 export const formatLastMessageDate = (ISODate: string) => {
     const date = new Date(ISODate);
-    return `${date.getHours().toString().padEnd(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 }
