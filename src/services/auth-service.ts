@@ -35,11 +35,11 @@ export default class AuthService {
 
         if (hasError(response)) {
             new Notification(response.reason);
-            store.set('user', null);
             this.authStatus = AuthStatus.NO_AUTH;
+            store.set('user', null);
         } else {
-            store.set('user', response);
             this.authStatus = AuthStatus.AUTH;
+            store.set('user', response);
         }
     }
 }
