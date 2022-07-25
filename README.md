@@ -5,7 +5,7 @@ A practical project for the Yandex.Practicum middle webdev course.
 ## Functionality and tools
 
 A single page application. It uses Handlebars to generate nested components (including pages and forms). Other tools used: postcss, eslint, stylelint, nanoid.
-A user can sign up and log in, create chats, add another user to a chat or remove them, edit their profile, including the password and the avatar and, of course, exchange messages with a chat member.
+A user can sign up and log in, create chats, add another user to a chat or remove them, edit their profile, including the password and the avatar and, of course, exchange messages with a chat member. Server errors are currently displaying only in the console.
 
 ## Netlify
 
