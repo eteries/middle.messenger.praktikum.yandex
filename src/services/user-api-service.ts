@@ -1,6 +1,6 @@
 import HTTPTransport from '../utils/http';
 import { APIError } from '../types/error';
-import { UserDTO } from '../types/user';
+import { UserDTO, UserValueDTO } from '../types/user';
 
 export default class UserApiService {
     private _http: HTTPTransport = new HTTPTransport();
@@ -30,6 +30,15 @@ export default class UserApiService {
                 oldPassword,
                 newPassword
             }
+        });
+    }
+
+    public updateUser(user: UserValueDTO) {
+        return this._http.put<UserDTO | APIError>(`${this._url}/user/profile`, {
+            headers: {
+                'content-type': 'application/json'
+            },
+            data: user
         });
     }
 }

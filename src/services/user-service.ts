@@ -2,6 +2,7 @@ import UserApiService from './user-api-service';
 import { hasError } from '../utils/network';
 import store from '../store/store';
 import AuthService from './auth-service';
+import { UserValueDTO } from '../types/user';
 
 export default class UserService {
     private readonly _userApiService = new UserApiService();
@@ -31,6 +32,17 @@ export default class UserService {
             new Notification('The password has been updated. Use it to log in');
             store.set('user', null);
             this._authService.logout();
+        }
+    }
+
+    public async updateUser(user: UserValueDTO) {
+        const response =  await this._userApiService.updateUser(user);
+
+        if (hasError(response)) {
+            new Notification(response.reason);
+        } else {
+            new Notification('The user has been updated.');
+            store.set('user', response);
         }
     }
 }

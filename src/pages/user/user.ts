@@ -10,21 +10,24 @@ import AuthService from '../../services/auth-service';
 import Router from '../../utils/router';
 import { hasError } from '../../utils/network';
 import store, { StoreEvent } from '../../store/store';
+import UserService from '../../services/user-service';
 
 export default class UserPage extends Block {
-    private readonly _authorizationService: AuthService;
+    private readonly _authService: AuthService;
+    private readonly _userService: UserService;
     private readonly _router: Router;
 
     constructor() {
         super();
 
-        this._authorizationService = new AuthService();
+        this._userService = new UserService();
+        this._authService = new AuthService();
         this._router = new Router();
 
-        this._authorizationService.getCurrentUser();
+        this._authService.getCurrentUser();
 
         store.on(StoreEvent.Updated, () => {
-            this.setProps(store.getState());
+            this.setProps({user: store.getState().user});
         });
     }
 
@@ -59,7 +62,7 @@ export default class UserPage extends Block {
     }
 
     private async _logout() {
-        const result = await this._authorizationService.logout();
+        const result = await this._authService.logout();
         if (!hasError(result)) {
             this._router.navigate('/');
         }
@@ -69,7 +72,8 @@ export default class UserPage extends Block {
         evt.preventDefault();
         const form = this.props.children.form;
         if (form.isValid) {
-            console.log(form.value);
+            this._userService.updateUser(form.value);
+            this.setProps({isEdit: false});
         }
     }
 

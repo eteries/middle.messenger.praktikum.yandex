@@ -10,6 +10,7 @@ interface InputProps {
     pattern: RegExp;
     accept?: string;
     name?: string;
+    value?: string;
 
 }
 

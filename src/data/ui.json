@@ -17,6 +17,7 @@
     "emailLabel": "Email",
     "firstNameLabel": "First name",
     "lastNameLabel": "Last name",
+    "displayNameLabel": "Display name",
     "phoneLabel": "Phone",
     "passwordLabel": "Password",
     "oldPassLabel": "Old password",
