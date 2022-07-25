@@ -24,6 +24,12 @@
     &__actions {
         margin-top: 20px;
     }
+
+    &__avatar {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
 }
 
 .avatar-form {
