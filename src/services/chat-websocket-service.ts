@@ -19,7 +19,6 @@ export default class WebSocketService extends EventBus {
     }
 
     public send(message: string) {
-        console.log('SocketService::send', message);
         this._socket.send(JSON.stringify({
             type: 'message',
             content: message
@@ -28,7 +27,6 @@ export default class WebSocketService extends EventBus {
 
 
     public getMessages(offset = 0) {
-        console.log('SocketService::getMessages');
         this._socket.send(JSON.stringify({
             type: "get old",
             content: offset

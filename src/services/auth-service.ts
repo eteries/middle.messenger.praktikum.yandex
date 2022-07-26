@@ -10,10 +10,12 @@ export enum AuthStatus {
 }
 
 export default class AuthService {
-    private readonly _authorizationApiService = new AuthApiService();
+    private readonly _authorizationApiService: AuthApiService;
     public authStatus: AuthStatus;
 
     constructor() {
+        this._authorizationApiService = new AuthApiService();
+
         this.authStatus = AuthStatus.UNKNOWN;
     }
 
@@ -26,7 +28,7 @@ export default class AuthService {
     }
 
     public logout() {
-        store.set('user', null)
+        store.set('user', null);
         return this._authorizationApiService.logout();
     }
 

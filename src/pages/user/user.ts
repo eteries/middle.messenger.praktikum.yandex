@@ -24,8 +24,6 @@ export default class UserPage extends Block {
         this._authService = new AuthService();
         this._router = new Router();
 
-        this._authService.getCurrentUser();
-
         store.on(StoreEvent.Updated, () => {
             this.setProps({user: store.getState().user});
         });
@@ -44,6 +42,7 @@ export default class UserPage extends Block {
                     this._onCancelClick(evt);
                 }
             },
+            user: store.getState().user,
             children: {
                 form: new UserEditForm({
                     ui,

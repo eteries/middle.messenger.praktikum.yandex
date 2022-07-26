@@ -28,11 +28,8 @@ export default class UserEditForm extends Form {
         this._userService = new UserService();
 
         store.on(StoreEvent.Updated, () => {
-            const {user} = store.getState();
-            this.setProps({
-                user
-            });
             this.init();
+
             this._eventBus().emit(BlockEvent.FLOW_CDU);
         });
 
@@ -41,6 +38,9 @@ export default class UserEditForm extends Form {
     }
 
     public init() {
+        this.setProps({
+            user: store.getState().user,
+        })
         this._controls = {
             email: new Input({
                 message: 'A valid, not empty email',

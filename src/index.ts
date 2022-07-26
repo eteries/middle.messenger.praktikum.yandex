@@ -7,12 +7,15 @@ import Error404 from './pages/404/error-404';
 import Error500 from './pages/500/error-500';
 import Router from './utils/router';
 import AuthService from './services/auth-service';
+import store from './store/store';
 
 const router = new Router("#app");
 const authService = new AuthService();
 
 document.addEventListener('DOMContentLoaded', () => {
-    authService.getCurrentUser();
+    if (!store.getState().user) {
+        authService.getCurrentUser();
+    }
 
     router
         .use('/', IndexPage)

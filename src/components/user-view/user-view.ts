@@ -37,6 +37,7 @@ export default class UserView extends Block {
             events: {
                 click: (evt: PointerEvent) => this._onPasswordClick(evt)
             },
+            user: store.getState().user,
             children: {
                 password: new Modal({
                     title: 'Change the password',

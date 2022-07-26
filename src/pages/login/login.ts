@@ -43,11 +43,18 @@ export default class LoginPage extends Block {
     private async _onSubmit(evt: SubmitEvent) {
         evt.preventDefault();
         const form = this.props.children.form;
-        if (form.isValid) {
-            const result = await this._authorizationService.login(form.value);
-            if (!hasError(result)) {
-                this._router.navigate('/chat.html')
-            }
+        if (!form.isValid) {
+            return;
+        }
+        const login = await this._authorizationService.login(form.value);
+
+        if (hasError(login)) {
+            return;
+        }
+
+        const user = await this._authorizationService.getCurrentUser();
+        if (!hasError(user)) {
+            this._router.navigate('/chat.html');
         }
     }
 }

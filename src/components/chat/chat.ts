@@ -48,30 +48,6 @@ export default class ChatComponent extends Block {
         this._onMessageSubmit = this._onMessageSubmit.bind(this);
         this._onUserAddSubmit = this._onUserAddSubmit.bind(this);
         this._onUserRemoveSubmit = this._onUserRemoveSubmit.bind(this);
-
-        this._socketService.on(SocketEvent.Message, (payload) => {
-            if (Array.isArray(payload)) {
-                this._messages = [
-                    ...this._messages,
-                    ...payload
-                        .map((message: ChatMessageDTO) => new MessageComponent({message: mapChatMessageDTOToChatMessage(message)}))
-                        .reverse()
-                ];
-            } else if(payload?.type === 'message') {
-                this._messages = [
-                    ...this._messages,
-                    new MessageComponent({message: mapChatMessageDTOToChatMessage(payload)})
-                ];
-
-            }
-
-            this.setProps({
-                children: {
-                    ...this.props.children,
-                    messages: this._messages
-                }
-            })
-        })
     }
 
     public init() {
@@ -151,5 +127,27 @@ export default class ChatComponent extends Block {
             this._socketService.getMessages();
         });
 
+        this._socketService.on(SocketEvent.Message, (payload) => {
+            if (Array.isArray(payload)) {
+                this._messages = [
+                    ...this._messages,
+                    ...payload
+                        .map((message: ChatMessageDTO) => new MessageComponent({message: mapChatMessageDTOToChatMessage(message)}))
+                        .reverse()
+                ];
+            } else if(payload?.type === 'message') {
+                this._messages = [
+                    ...this._messages,
+                    new MessageComponent({message: mapChatMessageDTOToChatMessage(payload)})
+                ];
+            }
+
+            this.setProps({
+                children: {
+                    ...this.props.children,
+                    messages: this._messages
+                }
+            })
+        })
     }
 }
