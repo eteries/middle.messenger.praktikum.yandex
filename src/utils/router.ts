@@ -1,8 +1,13 @@
 import { BlockClass, Nullable } from '../types/common';
 import Route from './route';
 import AuthService, { AuthStatus } from '../services/auth-service';
+import EventBus from './event-bus';
 
-export default class Router {
+export enum RouterEvent {
+    Change = 'open'
+}
+
+export default class Router extends EventBus {
     private static __instance: Router;
     private _currentRoute: Nullable<Route>;
     private readonly _rootQuery: string;
@@ -13,6 +18,8 @@ export default class Router {
     public location: Location;
 
     public constructor(rootQuery = '#app') {
+        super();
+
         if (Router.__instance) {
             return Router.__instance;
         }
@@ -40,26 +47,43 @@ export default class Router {
             this._onRoute(location.pathname);
         };
 
+        window.addEventListener('click', (event: PointerEvent) => {
+            const link = (event.target as HTMLElement).closest('.js-router-link');
+            if (!link) {
+                return;
+            }
+            event.preventDefault();
+            const url = link.getAttribute('href');
+            if (url) {
+                this.navigate(url);
+            }
+        });
+
         this._onRoute(window.location.pathname);
     }
 
     private _onRoute(pathname: string) {
-        const route = this.getRoute(pathname);
+        const pathAndParams = pathname.split('?');
+        const route = this.getRoute(pathAndParams[0]);
+
         if (!route) {
             this._onRoute('**');
             return;
         }
 
-        if (route.isPrivate && this._authService.hasAuth === AuthStatus.NO_AUTH) {
+        if (route.isPrivate && this._authService.authStatus === AuthStatus.NO_AUTH) {
             this._onRoute('/');
             return;
         }
 
         if (this._currentRoute && this._currentRoute !== route) {
             this._currentRoute.leave();
+
         }
 
         this._currentRoute = route;
+        this.emit(RouterEvent.Change);
+
         (route as Route).render();
     }
 

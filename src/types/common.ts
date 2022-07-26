@@ -3,6 +3,7 @@ import Block from '../utils/block';
 import { MethodHTTP } from '../constants';
 import { StoreEvent } from '../store/store';
 import { SocketEvent } from '../services/chat-websocket-service';
+import { RouterEvent } from '../utils/router';
 
 
 export type Indexed = {[key: string | symbol]: any};
@@ -37,4 +38,4 @@ export type BlockClass = {
     new(props?: Indexed): Block;
 }
 
-export type AppEvent = BlockEvent | StoreEvent | SocketEvent;
+export type AppEvent = BlockEvent | StoreEvent | SocketEvent | RouterEvent;
