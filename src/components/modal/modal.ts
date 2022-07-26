@@ -32,7 +32,7 @@ export default class Modal extends Block {
     }
 
     private _onCloseClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.close') as HTMLElement;
+        const target = this.element?.querySelector('.js-close') as HTMLElement;
         if (evt.composedPath().includes(target)) {
             this.hide();
         }

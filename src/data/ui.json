@@ -35,6 +35,7 @@
   },
   "chat": {
     "remove": "Remove user from the chat",
-    "add": "Add a user to the chat"
+    "add": "Add a user to the chat",
+    "title": "Chat's title"
   }
 }

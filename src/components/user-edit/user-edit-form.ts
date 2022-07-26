@@ -29,10 +29,10 @@ export default class UserEditForm extends Form {
 
         store.on(StoreEvent.Updated, () => {
             const {user} = store.getState();
-            this.init();
             this.setProps({
                 user
             });
+            this.init();
             this._eventBus().emit(BlockEvent.FLOW_CDU);
         });
 
@@ -123,7 +123,7 @@ export default class UserEditForm extends Form {
     }
 
     private _onAvatarClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.avatar') as HTMLElement;
+        const target = this.element?.querySelector('.js-avatar') as HTMLElement;
         if (evt.composedPath().includes(target)) {
             this.props.children.avatar.show();
         }

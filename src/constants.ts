@@ -14,4 +14,5 @@ export enum MethodHTTP {
     DELETE = 'DELETE',
 }
 
+export const API = 'https://ya-praktikum.tech/api/v2';
 export const API_UPLOAD_PATH = `https://ya-praktikum.tech/api/v2/resources/`;

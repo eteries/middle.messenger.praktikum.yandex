@@ -1,10 +1,11 @@
 import HTTPTransport from '../utils/http';
 import { APIError } from '../types/error';
 import { ChatDTO, ChatValueDTO, Connect } from '../types/chat';
+import { API } from '../constants';
 
 export default class ChatApiService {
     private _http: HTTPTransport = new HTTPTransport();
-    private _url = 'https://ya-praktikum.tech/api/v2';
+    private _url = API;
 
     public getChats(offset = 0, limit = 20, title = '') {
         return this._http.get<ChatDTO[] | APIError>(`${this._url}/chats`, {

@@ -14,7 +14,7 @@ export default class Block {
     protected _eventBus: () => EventBus;
     protected _state: any;
 
-    constructor(props: Indexed = {}) {
+    public constructor(props: Indexed = {}) {
         const eventBus = new EventBus();
         this._eventBus = () => eventBus;
 

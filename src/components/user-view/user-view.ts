@@ -65,7 +65,7 @@ export default class UserView extends Block {
     }
 
     private _onPasswordClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.password') as HTMLElement;
+        const target = this.element?.querySelector('.js-password') as HTMLElement;
         if (evt.composedPath().includes(target)) {
             this.props.children.password.show();
         }

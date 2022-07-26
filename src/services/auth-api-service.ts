@@ -1,10 +1,11 @@
 import HTTPTransport from '../utils/http';
 import { Account, AccountValue, UserDTO, UserValueDTO } from '../types/user';
 import { APIError } from '../types/error';
+import { API } from '../constants';
 
 export default class AuthApiService {
     private _http: HTTPTransport = new HTTPTransport();
-    private _url = 'https://ya-praktikum.tech/api/v2';
+    private _url = API;
 
     public createUser(user: UserValueDTO) {
         return this._http.post<Account>(`${this._url}/auth/signup`, {

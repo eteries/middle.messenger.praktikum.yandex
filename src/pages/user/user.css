@@ -18,6 +18,16 @@
     height: 150px;
     border-radius: 50%;
     background-color: var(--secondary-color-lighter);
+    border: 2px solid var(--secondary-color);
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .edit-form {

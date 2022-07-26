@@ -48,7 +48,6 @@ export default class ChatComponent extends Block {
         this._onMessageSubmit = this._onMessageSubmit.bind(this);
         this._onUserAddSubmit = this._onUserAddSubmit.bind(this);
         this._onUserRemoveSubmit = this._onUserRemoveSubmit.bind(this);
-        this._onCloseClick = this._onCloseClick.bind(this);
 
         this._socketService.on(SocketEvent.Message, (payload) => {
             if (Array.isArray(payload)) {
@@ -140,13 +139,6 @@ export default class ChatComponent extends Block {
         const form = modal.props.children.content;
         if (form.isValid) {
             this._chatService.removeUser(form.value, this.props.id);
-        }
-    }
-
-    private _onCloseClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.close') as HTMLElement;
-        if (evt.composedPath().includes(target)) {
-            this.props.children.add.hide();
         }
     }
 

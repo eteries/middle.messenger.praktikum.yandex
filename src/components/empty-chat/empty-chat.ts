@@ -62,7 +62,7 @@ export default class EmptyChat extends Block {
     }
 
     private _onCreateClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.create') as HTMLElement;
+        const target = this.element?.querySelector('.js-create') as HTMLElement;
         if (evt.composedPath().includes(target)) {
             this.props.children.create.show();
         }

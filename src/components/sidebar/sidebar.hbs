@@ -7,7 +7,8 @@
   </div>
   <ul class="chat-list">
     {{#each chats}}
-      <a class="contact js-router-link" href="/chat.html?id={{this.id}}">
+      <div class="contact">
+        <a class="contact__link js-router-link" href="/chat.html?id={{this.id}}"></a>
         <div class="contact__avatar">
             {{#if this.lastMessage.user.avatar}}
                 <img src="{{../API_UPLOAD_PATH}}{{this.lastMessage.user.avatar}}" alt="{{this.lastMessage.user.firstName}}">
@@ -23,7 +24,7 @@
           {{#if this.unreadCount}}
             <div class="contact__num">{{this.unreadCount}}</div>
           {{/if}}
-      </a>
+      </div>
     {{/each}}
   </ul>
 </div>

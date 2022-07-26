@@ -4,7 +4,7 @@
       <h1>{{user.first_name}} {{user.last_name}}</h1>
     </header>
     <div class="edit-form__avatar">
-      <button type="button" id="avatar" class="avatar">
+      <button type="button" id="avatar" class="avatar js-avatar">
           {{#if user.avatar}}
               <img src="https://ya-praktikum.tech/api/v2/resources/{{user.avatar}}" alt="user" width="150" height="150">
           {{/if}}
@@ -35,7 +35,7 @@
       <button class="button button--primary" type="submit">{{ui.save}}</button>
     </div>
     <div class="actions__item">
-      <a class="button button--primary-ghost js-router-link" href="/user.html">{{ui.cancel}}</a>
+      <button class="button button--primary-ghost js-cancel">{{ui.cancel}}</button>
     </div>
   </div>
   {{{children.avatar}}}

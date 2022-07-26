@@ -17,7 +17,7 @@ export default class UserPage extends Block {
     private readonly _userService: UserService;
     private readonly _router: Router;
 
-    constructor() {
+    public constructor() {
         super();
 
         this._userService = new UserService();
@@ -41,6 +41,7 @@ export default class UserPage extends Block {
                 click: (evt: PointerEvent) => {
                     this._onEditClick(evt);
                     this._onLogoutClick(evt);
+                    this._onCancelClick(evt);
                 }
             },
             children: {
@@ -68,6 +69,15 @@ export default class UserPage extends Block {
         }
     }
 
+    private _onCancelClick(evt: PointerEvent) {
+        const target = this.element?.querySelector('.js-cancel') as HTMLElement;
+        if (evt.composedPath().includes(target)) {
+            this.setProps({
+                isEdit: false
+            });
+        }
+    }
+
     private _onUserSubmit(evt: SubmitEvent) {
         evt.preventDefault();
         const form = this.props.children.form;
@@ -78,14 +88,14 @@ export default class UserPage extends Block {
     }
 
     private _onEditClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.edit') as HTMLElement;
+        const target = this.element?.querySelector('.js-edit') as HTMLElement;
         if (evt.composedPath().includes(target)) {
             this.setProps({isEdit: true});
         }
     }
 
     private _onLogoutClick(evt: PointerEvent) {
-        const target = this.element?.querySelector('.logout') as HTMLElement;
+        const target = this.element?.querySelector('.js-logout') as HTMLElement;
         if (evt.composedPath().includes(target)) {
             this._logout();
         }

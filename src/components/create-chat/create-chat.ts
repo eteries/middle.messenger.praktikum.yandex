@@ -3,6 +3,7 @@ import Input from '../input/input';
 import { Regex } from '../../constants';
 import { Indexed } from '../../types/common';
 import Form from '../../utils/form';
+import ui from '../../data/ui.json';
 
 interface FormProps {
     ui: Indexed,
@@ -21,7 +22,7 @@ export default class CreateChat extends Form {
         this._controls = {
             title: new Input({
                 message: 'Not empty',
-                label: 'Название',
+                label: ui.chat.title,
                 pattern: Regex.NOT_EMPTY
             })
         };

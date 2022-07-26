@@ -37,7 +37,7 @@ export const mapChatMessageDTOToChatMessage = (dto: ChatMessageDTO) => {
         userId: dto.user_id,
         chatId: dto.chat_id,
         isRead: dto.is_read,
-        isMine: dto.user_id === store.getState()?.user?.id,
+        isMine: dto.user_id === store.getState()?.user?.id
     }
 }
 
