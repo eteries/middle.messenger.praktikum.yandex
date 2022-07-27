@@ -36,10 +36,15 @@
         align-items: center;
         flex-direction: row;
         justify-content: space-between;
+        width: 100%;
     }
 }
 
 .form-row--wide {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
     .control,
     .value {
         max-width: 300px;

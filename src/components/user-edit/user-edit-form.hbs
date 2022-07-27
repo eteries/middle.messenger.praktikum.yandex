@@ -1,11 +1,14 @@
 <form class="elements-column edit-form" novalidate>
   <div class="form-row">
     <header class="user-view__header form-row">
-      <h1>{{user.firstName}} {{user.lastName}}</h1>
+      <h1>{{user.first_name}} {{user.last_name}}</h1>
     </header>
     <div class="edit-form__avatar">
-      <label for="avatar-upload" class="avatar"></label>
-      <input class="visually-hidden" type="file" id="avatar-upload" />
+      <button type="button" id="avatar" class="avatar js-avatar">
+          {{#if user.avatar}}
+              <img src="https://ya-praktikum.tech/api/v2/resources/{{user.avatar}}" alt="user" width="150" height="150">
+          {{/if}}
+      </button>
     </div>
   </div>
   <div class="form-row form-row--wide">
@@ -18,7 +21,10 @@
     {{{children.first_name}}}
   </div>
   <div class="form-row form-row--wide">
-    {{{children.last_name}}}
+    {{{children.second_name}}}
+  </div>
+  <div class="form-row form-row--wide">
+    {{{children.display_name}}}
   </div>
   <div class="form-row form-row--wide">
     {{{children.phone}}}
@@ -29,8 +35,8 @@
       <button class="button button--primary" type="submit">{{ui.save}}</button>
     </div>
     <div class="actions__item">
-      <a class="button button--primary-ghost" href="../../pages/user/user.hbs">{{ui.cancel}}</a>
+      <button class="button button--primary-ghost js-cancel">{{ui.cancel}}</button>
     </div>
   </div>
-
+  {{{children.avatar}}}
 </form>

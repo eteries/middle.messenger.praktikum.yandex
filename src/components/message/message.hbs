@@ -1,12 +1,12 @@
 <div class="chat-message {{messageClass}}">
   <div class="chat-message__avatar">
-    <div class="avatar"></div>
+    <div class="avatar">{{message.avatar}}</div>
   </div>
   <div class="message-balloon">
     <div class="message-content">
-      <p>{{message}}</p>
+      <p>{{message.content}}</p>
       <div class="message-content__time">
-        {{time}}
+        {{formattedDate}}
         {{{check}}}
       </div>
     </div>

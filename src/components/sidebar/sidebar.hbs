@@ -1,22 +1,30 @@
 <div class="sidebar">
   <div class="sidebar__profile">
-    <a class="profile-link" href="/user.html">Profile</a>
+    <a class="profile-link js-router-link" href="/user.html">Profile</a>
   </div>
   <div class="sidebar__search">
     {{{children.search}}}
   </div>
   <ul class="chat-list">
-    {{#each data.contacts}}
-      <a class="contact" href="chat.hbs">
-        <div class="contact__avatar"></div>
-        <div class="contact__name">{{this.name}}</div>
-        <div class="contact__day">{{this.day}}</div>
-        <div class="contact__content">{{this.content}}</div>
-          {{#if this.num}}
-            <div class="contact__num">{{this.num}}</div>
+    {{#each chats}}
+      <div class="contact">
+        <a class="contact__link js-router-link" href="/chat.html?id={{this.id}}"></a>
+        <div class="contact__avatar">
+            {{#if this.lastMessage.user.avatar}}
+                <img src="{{../API_UPLOAD_PATH}}{{this.lastMessage.user.avatar}}" alt="{{this.lastMessage.user.firstName}}">
+            {{/if}}
+        </div>
+        <div class="contact__name">{{this.title}}</div>
+        {{#if this.lastMessage}}
+            <div class="contact__day">{{this.lastMessage.time}}</div>
+            <div class="contact__content">{{this.lastMessage.user.firstName}}: {{this.lastMessage.content}}</div>
+        {{else}}
+            <div class="contact__content">Waiting for a first message</div>
+        {{/if}}
+          {{#if this.unreadCount}}
+            <div class="contact__num">{{this.unreadCount}}</div>
           {{/if}}
-
-      </a>
+      </div>
     {{/each}}
   </ul>
 </div>

@@ -4,7 +4,7 @@ export const Regex = {
     EMAIL: /^[\w.-]+@[\w.-]+[A-Za-z0-9]+\.[A-Za-z]{2,4}$/,
     PASSWORD: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,40}$/,
     PHONE: /^(?=\+*\d+).{10,15}$/,
-    MESSAGE: /\S+/
+    NOT_EMPTY: /\S+/
 };
 
 export enum MethodHTTP {
@@ -13,3 +13,6 @@ export enum MethodHTTP {
     PUT = 'PUT',
     DELETE = 'DELETE',
 }
+
+export const API = 'https://ya-praktikum.tech/api/v2';
+export const API_UPLOAD_PATH = `https://ya-praktikum.tech/api/v2/resources/`;

@@ -2,7 +2,7 @@ import templateFunction from './login-form.hbs';
 import ui from '../../data/ui.json';
 import Input from '../input/input';
 import { Regex } from '../../constants';
-import { PropsObject } from '../../types/common';
+import { Indexed } from '../../types/common';
 import Form from '../../utils/form';
 
 interface FormProps {
@@ -10,7 +10,7 @@ interface FormProps {
     events: {
         submit: (evt: SubmitEvent) => void
     };
-    children?: PropsObject;
+    children?: Indexed;
 }
 
 export default class LoginForm extends Form {
@@ -27,7 +27,7 @@ export default class LoginForm extends Form {
                 pattern: Regex.LOGIN
             }),
             password: new Input({
-                message: '3-20 length, at least one digit and one capital letter',
+                message: '8-40 length, at least one digit and one capital letter',
                 label: ui.user.passwordLabel,
                 type: 'password',
                 pattern: Regex.PASSWORD

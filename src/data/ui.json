@@ -17,8 +17,11 @@
     "emailLabel": "Email",
     "firstNameLabel": "First name",
     "lastNameLabel": "Last name",
+    "displayNameLabel": "Display name",
     "phoneLabel": "Phone",
     "passwordLabel": "Password",
+    "oldPassLabel": "Old password",
+    "newPassLabel": "New password",
     "signupButton": "Signup",
     "signupLink": "Signup",
     "loginButton": "Login",
@@ -27,9 +30,12 @@
     "editPasswordLink": "Edit password"
   },
   "chats": {
-    "empty": "Select a chat to start chatting"
+    "empty": "Select a chat to start chatting",
+    "create": "or create a new one"
   },
   "chat": {
-    "delete": "Delete this chat"
+    "remove": "Remove user from the chat",
+    "add": "Add a user to the chat",
+    "title": "Chat's title"
   }
 }

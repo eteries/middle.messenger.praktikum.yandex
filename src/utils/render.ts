@@ -9,6 +9,11 @@ export const renderDom = (rootSelector: string, component: Block) => {
 
     root.innerHTML = '';
 
-    root.append(component.getContent());
+    const element = component.getContent();
+
+    if (element) {
+        root.append(element);
+    }
+
     component.dispatchComponentDidMount();
 };

@@ -1,38 +1,29 @@
-import Block from './utils/block';
-
-import { renderDom } from './utils/render';
+import IndexPage from './pages/index/index';
 import SignupPage from './pages/signup/signup-page';
 import ChatPage from './pages/chat/chat';
 import LoginPage from './pages/login/login';
 import UserPage from './pages/user/user';
 import Error404 from './pages/404/error-404';
 import Error500 from './pages/500/error-500';
+import Router from './utils/router';
+import AuthService from './services/auth-service';
+import store from './store/store';
+
+const router = new Router("#app");
+const authService = new AuthService();
 
 document.addEventListener('DOMContentLoaded', () => {
-    let currentPage: Block;
-
-    switch(window.location.pathname) {
-        case '/chat.html':
-            currentPage = new ChatPage();
-            break;
-        case '/login.html':
-            currentPage = new LoginPage();
-            break;
-        case '/user.html':
-            currentPage = new UserPage();
-            break;
-        case '/404.html':
-            currentPage = new Error404();
-            break;
-        case '/500.html':
-            currentPage = new Error500();
-            break;
-        case '/':
-        default:
-            currentPage = new SignupPage();
-            break;
+    if (!store.getState().user) {
+        authService.getCurrentUser();
     }
-    renderDom("#app", currentPage);
-})
 
-
+    router
+        .use('/', IndexPage)
+        .use('/chat.html', ChatPage, true)
+        .use('/login.html', LoginPage)
+        .use('/signup.html', SignupPage)
+        .use('/user.html', UserPage, true)
+        .use('/500.html', Error500)
+        .use('**', Error404)
+        .start();
+});

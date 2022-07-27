@@ -1,12 +1,12 @@
 import Block from './block';
 import Input from '../components/input/input';
-import { PropsObject } from '../types/common';
+import { Indexed } from '../types/common';
 
-interface FormProps extends PropsObject {
+interface FormProps extends Indexed {
     events: {
         submit: (evt: SubmitEvent) => void
     };
-    children?: PropsObject;
+    children?: Indexed;
 }
 
 export default class Form extends Block {

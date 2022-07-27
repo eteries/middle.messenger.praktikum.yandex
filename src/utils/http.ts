@@ -35,6 +35,7 @@ export default class HTTPTransport {
             }
 
             const xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
             const isGet = method === MethodHTTP.GET;
 
             xhr.open(
@@ -49,7 +50,12 @@ export default class HTTPTransport {
             });
 
             xhr.onload = function() {
-                resolve(xhr.response);
+                try {
+                    resolve(JSON.parse(xhr.response));
+                }
+                catch {
+                    resolve(xhr.response)
+                }
             };
 
             xhr.onabort = reject;
@@ -60,6 +66,8 @@ export default class HTTPTransport {
 
             if (isGet || !data) {
                 xhr.send();
+            } else if(options?.headers && options.headers['content-type'] === 'application/json') {
+                xhr.send(JSON.stringify(data))
             } else {
                 xhr.send(data);
             }
